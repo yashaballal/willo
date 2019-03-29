@@ -1,0 +1,28 @@
+<div id=logindiv class="d-flex justify-content-center">
+    <form id="loginform" (submit)="loginUser($event)">
+      <br>
+      <br>
+      <br>
+      <h1 id="header1">Willo</h1>
+      <img id="willoimage" src="assets/images/willo1.png" width="100" height="100" class="d-inline-block align-top" alt="">
+      <br>
+      <br>
+      <label id="usernamelabel" for="username">Username:</label>
+      &nbsp;&nbsp;
+          <input type="text" class="form-control" id="username" placeholder="Enter username">
+      <br>
+      <br>
+      <div class="form-group">
+        <label id="passwordlabel" for="password">Password:</label>
+        &nbsp;&nbsp;
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <br>
+      <br>
+      <div class="form-group">
+        <button type="submit" id="submitbutton" class="btn btn-primary">Submit</button>
+        &nbsp;&nbsp;
+        <button id="fpwdbutton" class="btn btn-primary">Forgot Password?</button>
+      </div>
+    </form>
+</div>

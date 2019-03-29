@@ -1,0 +1,62 @@
+body,html{
+  margin:0;
+  width:100%;
+}
+html{
+    position:relative;
+}
+#logindiv {
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  overflow:hidden;
+  background-color: #8A33FF;
+  text-align: center;
+}
+
+#usernamelabel{
+ color: #FFFFFF;
+}
+
+#passwordlabel{
+  color: #FFFFFF;
+}
+
+
+#submitbutton{
+  background-color: #531840;
+  border-color: #531840;
+}
+
+#header1{
+  text-align: center;
+  color:#FFFFFF;
+}
+
+#fpwdbutton{
+  background-color: #531840;
+  border-color: #531840;
+}
+
+#willoimage{
+  text-align: center;
+}
+
+#loginform
+{
+  top:25%;
+}
+
+input[type=text]{
+	box-sizing: border-box;
+	border-radius: 4px;
+}
+
+input[type=password]{
+	box-sizing: border-box;
+	border-radius: 4px;
+}

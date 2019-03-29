@@ -1,0 +1,10 @@
+nav a {
+  color: #fff;
+  }
+nav a.hover {
+  color: #32673f;
+}
+#canvasid{
+	fill:#336699;
+	primaryColor:#123456;
+}
