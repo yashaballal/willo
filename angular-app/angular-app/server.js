@@ -9,6 +9,8 @@ app.use(cors());
 //Getting our POSTS routes
 const posts=require('./router/routes/posts');
 const stats=require('./router/routes/stats');
+const useraccounts=require('./router/routes/useraccounts');
+const customerfb = require('./router/routes/customerfb');
 //const userlogin=require('./router/routes/userlogin');
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -21,6 +23,10 @@ app.use(express.static(path.join(__dirname, '/dist')));
 
 app.use('/api/auth', posts);
 app.use('/api/stats', stats);
+app.use('/api/useraccount', useraccounts);
+app.use('/api/customerfb', customerfb);
+
+
 
 //Catch all other route requests and return it to the index
 app.get('*',(req,res)=>{

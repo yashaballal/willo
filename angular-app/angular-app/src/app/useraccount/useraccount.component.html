@@ -1,5 +1,5 @@
 <div id="maindiv">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8A33FF">
+    <nav id="navigationid" class="navbar navbar-expand-lg navbar-light" style="background-color: #6050dc">
         <div class="container">
             <div class="navbar-header">
                 <a href="/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
@@ -25,47 +25,54 @@
             </li>
         </div>
     </nav>
-    <h1 style="text-align: center;">User Account Placeholder</h1>
+    <div id="wrapper">
+    <div id="first">
+    <table id="tableid">
+      <tr>
+        <th *ngFor="let col of columns">
+          {{col}}
+        </th>
+      </tr>
+      <tr *ngFor="let char of characters" (click)="loadCourseReview(char.email)">
+          <td *ngFor="let col of columns">
+            {{char[col]}}
+          </td>
+      </tr>
+    </table>
+    </div>
+    <div id="second" *ngIf=conditionFlag class="container" style="position: relative; height:40vh; width:80vw; margin-left: 620px;">
+        <font size=5 color="#6050dc">{{displayData.name}}</font>
+        <br>
+        <font size=3 style="font-weight:bold;">Email ID: </font>{{displayData.email}}
+        <br>
+        <font size=3 style="font-weight:bold;">Contact:</font>
+        {{displayData.contact}}
+        <br>
+        <font size=3 style="font-weight:bold;">Street Address:</font>
+        {{displayData.street_address}} 
+        <br>
+        <font size=3 style="font-weight:bold;">City:</font>
+        {{displayData.city}}
+        <br>
+        <font size=3 style="font-weight:bold;">Country:</font>
+        {{displayData.state}}
+        <br>
+        <font size=3 style="font-weight:bold;">Marital Status:</font>
+        {{displayData.marital_status}}
+        <button (click)="onClickPDF()">PDF generation</button>
+    </div>
+    </div>
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">
 
         <!-- Footer Text -->
         <div class="container-fluid text-center text-md-left">
-
-          <!-- Grid row -->
-          <div class="row">
-
-            <!-- Grid column -->
-            <div class="col-md-6 mt-md-0 mt-3">
-
-              <!-- Content -->
-              <h5 class="text-uppercase font-weight-bold" style="text-align: center;">Footer text 1</h5>
-              <p style="text-align: center;">Text for footer1</p>
-
-            </div>
-            <!-- Grid column -->
-
-            <hr class="clearfix w-100 d-md-none pb-3">
-
-            <!-- Grid column -->
-            <div class="col-md-6 mb-md-0 mb-3">
-
-              <!-- Content -->
-              <h5 class="text-uppercase font-weight-bold" style="text-align: center;">Footer text 2</h5>
-              <p style="text-align: center;">Text for footer 2</p>
-
-            </div>
-            <!-- Grid column -->
-
-          </div>
-          <!-- Grid row -->
-
         </div>
         <!-- Footer Text -->
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3">© 2019 Copyright:
-          <a href="https://mdbootstrap.com/education/bootstrap/">Placeholder.com</a>
+        <div id="footer" class="footer-copyright text-center py-3"><font color="#FFFFFF">© 2019 Copyright: </font>
+          <a href="#">Placeholder.com</a>
         </div>
         <!-- Copyright -->
 

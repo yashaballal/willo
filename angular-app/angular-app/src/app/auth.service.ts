@@ -38,6 +38,22 @@ export class AuthService {
   {
     var statsURL = apiURL+"stats";
     console.log("Reached till this point getStatDetails "+statsURL);
-    return this.http.get(statsURL);
+    return this.http.get<any[]>(statsURL);
   }
+
+  getUserAccountDetails()
+  {
+    var useraccountURL = apiURL+"useraccount";
+    console.log("Reached till this point getUserAccountDetails "+useraccountURL);
+    return this.http.get<any[]>(useraccountURL);
+  }
+
+  getCustomerFeedbackDetails()
+  {
+    var customerfbURL = apiURL+"customerfb";
+    console.log("Reached till this point getUserAccountDetails "+customerfbURL);
+    return this.http.get<any[]>(customerfbURL);
+  }
+
+
 }
