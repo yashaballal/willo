@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-financialinfo',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinancialinfoComponent implements OnInit {
 
-  constructor() { }
+  constructor( private router: Router) { }
 
   ngOnInit() {
+  	if(!this.Auth.getLoggedInStatus())
+    {
+      this.router.navigate(['/login'])
+    }
+
   }
 
 }

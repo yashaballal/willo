@@ -23,6 +23,12 @@ export class UseraccountComponent implements OnInit {
 
   ngOnInit()
   {
+    if(!this.Auth.getLoggedInStatus())
+    {
+      console.log("Reached this part in !getLoggedInStatus")
+      this.router.navigate(['/login'])
+    }
+
     this.plotOnRecord();
   }
 
@@ -51,7 +57,8 @@ export class UseraccountComponent implements OnInit {
    {
       console.log("Reached here again");
       const doc = new jsPDF();
-      doc.text("Some text", 10, 10);
+      doc.setFontSize(12);
+      doc.text("I, "+this.displayData["name"]+", a resident in the city of \n"+this.displayData["city"]+", County of "+this.displayData["county"]+", State of "+this.displayData["state"]+", declare that this is my will.\n 1. Revocation. I revoke all wills that I have previously made.", 10, 10);
       doc.save("Will.pdf");
    }
 
@@ -65,5 +72,3 @@ export class UseraccountComponent implements OnInit {
   }
 
 }
-
-

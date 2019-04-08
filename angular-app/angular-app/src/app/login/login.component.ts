@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   constructor(private Auth:AuthService, private router: Router, private dashboard: DashboardComponent) { }
 
   ngOnInit() {
+  	  this.Auth.setLoggedInStatus(false);
   }
 
      loginUser(event){
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
 	    const password  = target.querySelector('#password').value
 	    this.Auth.getUserDetails(username,password).subscribe(data=>{
 	      if(data['result']){
+	      	this.Auth.setLoggedInStatus(true);
 	        this.router.navigate(['/dashboard'])
 	        this.Auth.setLoggedInStatus(true)
 

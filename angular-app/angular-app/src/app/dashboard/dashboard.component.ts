@@ -35,6 +35,12 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() 
   {
+    console.log(this.Auth.getLoggedInStatus)
+    if(!this.Auth.getLoggedInStatus())
+    {
+      this.router.navigate(['/login'])
+    }
+
     this.plotOnNavi();
   }
 

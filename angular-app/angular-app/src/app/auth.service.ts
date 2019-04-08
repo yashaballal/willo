@@ -9,7 +9,7 @@ const apiURL= "http://localhost:4600/api/";
 })
 export class AuthService {
 
-  private loggedInStatus = false
+  private loggedInStatus = JSON.parse(localStorage.getItem('loggedIn') || 'false')
   private username:string;
   private cid:string;
 
@@ -17,8 +17,11 @@ export class AuthService {
 
   setLoggedInStatus(value:boolean){
     this.loggedInStatus = value
+    localStorage.setItem('loggedIn', this.loggedInStatus)
   }
-  get isLoggedIn(){
+  
+  getLoggedInStatus(){
+    console.log(this.loggedInStatus)
     return this.loggedInStatus
   }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customerfb',
@@ -9,11 +9,16 @@ import { AuthService } from '../auth.service';
 })
 export class CustomerfbComponent implements OnInit {
 
-  constructor(private Auth:AuthService) { }
+  constructor(private Auth:AuthService, private router: Router) { }
 
   public feedbackArr = [];
 
   ngOnInit() {
+    if(!this.Auth.getLoggedInStatus())
+    {
+      this.router.navigate(['/login'])
+    }
+
   	this.Auth.getCustomerFeedbackDetails().subscribe(data=>{
     var self = this;
     console.log(data);

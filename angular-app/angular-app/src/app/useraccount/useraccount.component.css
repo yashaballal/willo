@@ -37,3 +37,12 @@ border:2px solid #6050dc;
 #second {
     float: left; /* add this */
 }
+
+#pdfgenbutton{
+  background-color: #531840;
+  border-color: #531840;
+}
+
+tr:hover{
+  background-color: #d3d3d3;
+}

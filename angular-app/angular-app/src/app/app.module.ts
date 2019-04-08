@@ -19,7 +19,7 @@ import { LoginComponent } from './login/login.component';
     FinancialinfoComponent,
     AddadminComponent,
     CustomerfbComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -33,11 +33,11 @@
           {{col}}
         </th>
       </tr>
-      <tr *ngFor="let char of characters" (click)="loadCourseReview(char.email)">
-          <td *ngFor="let col of columns">
-            {{char[col]}}
-          </td>
-      </tr>
+          <tr style="cursor: pointer;" *ngFor="let char of characters" (click)="loadCourseReview(char.email)">
+              <td *ngFor="let col of columns">
+                {{char[col]}}
+              </td>
+          </tr>
     </table>
     </div>
     <div id="second" *ngIf=conditionFlag class="container" style="position: relative; height:40vh; width:80vw; margin-left: 620px;">
@@ -59,7 +59,8 @@
         <br>
         <font size=3 style="font-weight:bold;">Marital Status:</font>
         {{displayData.marital_status}}
-        <button (click)="onClickPDF()">PDF generation</button>
+        <br>
+        <button (click)="onClickPDF()" id=pdfgenbutton style="color: #FFFFFF">PDF generation</button>
     </div>
     </div>
     <!-- Footer -->
