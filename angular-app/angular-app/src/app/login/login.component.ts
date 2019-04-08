@@ -35,4 +35,9 @@ export class LoginComponent implements OnInit {
 	    })
 	    console.log(username,password)
   }
+
+  forgotPwdFunction()
+  {
+  	this.router.navigate(['/fpwd'])
+  }
 }

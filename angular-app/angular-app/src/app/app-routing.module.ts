@@ -6,6 +6,7 @@ import {FinancialinfoComponent} from './financialinfo/financialinfo.component'
 import {AddadminComponent} from './addadmin/addadmin.component'
 import {CustomerfbComponent} from './customerfb/customerfb.component'
 import { LoginComponent } from './login/login.component';
+import { FpwdComponent } from './fpwd/fpwd.component';
 
 
 const routes: Routes = [{ path:'', redirectTo:'/login', pathMatch:'full'},
@@ -14,11 +15,12 @@ const routes: Routes = [{ path:'', redirectTo:'/login', pathMatch:'full'},
 						{ path:'useraccount', component: UseraccountComponent},
 						{ path:'financialinfo', component: FinancialinfoComponent},
 						{ path:'addadmin', component: AddadminComponent},
-						{ path:'customerfb', component: CustomerfbComponent}];
+						{ path:'customerfb', component: CustomerfbComponent},
+						{ path:'fpwd', component: FpwdComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents = [LoginComponent, DashboardComponent, UseraccountComponent, FinancialinfoComponent, AddadminComponent, CustomerfbComponent]
+export const routingComponents = [LoginComponent, DashboardComponent, UseraccountComponent, FinancialinfoComponent, AddadminComponent, CustomerfbComponent, FpwdComponent]
