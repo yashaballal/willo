@@ -25,7 +25,30 @@
             </li>
         </div>
     </nav>
-    
+    <table id="myTable" class="display" style="width:100%">
+   <thead>
+      <tr>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Feedback</th>
+         <th>Date</th>
+      </tr>
+   </thead>
+   <tbody>
+      <tr (click)=someFunction() *ngFor="let x of feedbackArr">
+         <td>{{x.name}}</td>
+         <td>{{x.email}}</td>
+         <td>{{x.Feedback}}</td>
+         <td>{{x.feedback_ts}}</td>
+      </tr>
+      <tr *ngIf="someThing" >
+         <td>
+           <input type="text" name="" value="">
+         </td>
+      </tr>
+   </tbody>
+</table>
+
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">
 

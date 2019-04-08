@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-customerfb',
   templateUrl: './customerfb.component.html',
@@ -12,6 +13,7 @@ export class CustomerfbComponent implements OnInit {
   constructor(private Auth:AuthService, private router: Router) { }
 
   public feedbackArr = [];
+  someThing:boolean = false;
 
   ngOnInit() {
     if(!this.Auth.getLoggedInStatus())
@@ -27,6 +29,11 @@ export class CustomerfbComponent implements OnInit {
     });
 
     });
+    $(document).ready( function () {
+      $('#myTable').DataTable();
+  } );
   }
-
+  someFunction(){
+    this.someThing = !this.someThing;
+  }
 }
