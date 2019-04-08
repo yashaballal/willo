@@ -10,6 +10,7 @@ import { FinancialinfoComponent } from './financialinfo/financialinfo.component'
 import { AddadminComponent } from './addadmin/addadmin.component';
 import { CustomerfbComponent } from './customerfb/customerfb.component';
 import { LoginComponent } from './login/login.component';
+import { FpwdComponent } from './fpwd/fpwd.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoginComponent } from './login/login.component';
     AddadminComponent,
     CustomerfbComponent,
     LoginComponent,
+    FpwdComponent,
   ],
   imports: [
     BrowserModule,

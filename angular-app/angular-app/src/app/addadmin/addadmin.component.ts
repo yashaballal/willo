@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class AddadminComponent implements OnInit {
 
-  constructor( private router: Router) {}
+  constructor(private Auth:AuthService, private router: Router) {}
 
   ngOnInit() {
   	if(!this.Auth.getLoggedInStatus())

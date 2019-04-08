@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-financialinfo',
@@ -8,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class FinancialinfoComponent implements OnInit {
 
-  constructor( private router: Router) { }
+  constructor( private Auth:AuthService, private router: Router) { }
 
   ngOnInit() {
   	if(!this.Auth.getLoggedInStatus())
