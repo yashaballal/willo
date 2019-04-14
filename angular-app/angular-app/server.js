@@ -11,7 +11,10 @@ const posts=require('./router/routes/posts');
 const stats=require('./router/routes/stats');
 const useraccounts=require('./router/routes/useraccounts');
 const customerfb = require('./router/routes/customerfb');
-//const userlogin=require('./router/routes/userlogin');
+const fpwd = require('./router/routes/fpwd');
+const customermail=require('./router/routes/customermail');
+const addadmin = require('./router/routes/addadmin');
+const financial = require('./router/routes/financial');
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -25,8 +28,10 @@ app.use('/api/auth', posts);
 app.use('/api/stats', stats);
 app.use('/api/useraccount', useraccounts);
 app.use('/api/customerfb', customerfb);
-
-
+app.use('/api/fpwd', fpwd);
+app.use('/api/customermail', customermail);
+app.use('/api/addadmin', addadmin);
+app.use('/api/financial', financial);
 
 //Catch all other route requests and return it to the index
 app.get('*',(req,res)=>{

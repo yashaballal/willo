@@ -9,13 +9,12 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 router.get('/', function (req, res) {
-  console.log("Reached stats in server");
-   db.query('select EXTRACT(YEAR_MONTH from last_payment_dt) as year_mm, SUM(amount) as amount from finance group by year_mm order by year_mm asc;', function (error, results, fields) {
+  console.log("Reached financial in server");
+   db.query('SELECT * FROM finance where account_status = "D"', function (error, results, fields) {
     if (error) throw error;
     console.log(JSON.stringify(results));
     res.send(JSON.stringify(results));
   });
 });
-
 
 module.exports = router;
