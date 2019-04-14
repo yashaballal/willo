@@ -38,7 +38,7 @@ border:2px solid #6050dc;
     float: left; /* add this */
 }
 
-#pdfgenbutton{
+#pdfgenbutton, #textSubmit, #customGen{
   background-color: #531840;
   border-color: #531840;
 }
@@ -46,3 +46,8 @@ border:2px solid #6050dc;
 tr:hover{
   background-color: #d3d3d3;
 }
+
+#quilled{
+  height: 375px;
+}
+

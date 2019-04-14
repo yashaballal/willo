@@ -2,30 +2,40 @@
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6050dc">
         <div class="container">
             <div class="navbar-header">
-                <a href="/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
+                <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
                 </a>
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard" class="navbar-brand">Dashboard</a>
+                <a class="nav-link" href="#/dashboard" class="navbar-brand">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/useraccount" class="navbar-brand">User Accounts</a>
+                <a class="nav-link" href="#/useraccount" class="navbar-brand">User Accounts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/financialinfo" class="navbar-brand">Financial Info</a>
+                <a class="nav-link" href="#/financialinfo" class="navbar-brand">Financial Info</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/addadmin" class="navbar-brand">Add Admin</a>
+                <a class="nav-link" href="#/addadmin" class="navbar-brand">Add Admin</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/customerfb" class="navbar-brand">Customer Feedback</a>
+                <a class="nav-link" href="#/customerfb" class="navbar-brand">Customer Feedback</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/login" class="navbar-brand">Sign Out</a>
+                <a class="nav-link" href="#/login" class="navbar-brand">Sign Out</a>
             </li>
         </div>
     </nav>
-    <h1 style="text-align: center;">Add Admin Placeholder</h1>
+    <br>
+    <br>
+    <div id="inputAdminDiv">
+        <input type="text" id="textId" placeholder="New admin emailID" #textInput>
+        <br>
+        <input type="text" id="textpwdId" placeholder="New admin password" #passwordInput>
+        <br>
+        <button id="addAdminBtn" (click)="addAdmin(textInput.value, passwordInput.value)">Add Admin</button>
+        <h6 *ngIf="displayPass" style="color:#6050dc">Admin Added!</h6>
+        <h6 *ngIf="displayFail" style="color:#6050dc">Something went wrong. Please try again!</h6>
+    </div>
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">
 

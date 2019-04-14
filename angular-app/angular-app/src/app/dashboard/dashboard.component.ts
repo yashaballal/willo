@@ -35,10 +35,11 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() 
   {
+    console.log("Reached ngOnInit for dashboard")
     console.log(this.Auth.getLoggedInStatus())
     if(!this.Auth.getLoggedInStatus())
     {
-      this.router.navigate(['/login'])
+      //this.router.navigate(['/login'])
     }
 
     this.plotOnNavi();
@@ -208,6 +209,12 @@ export class DashboardComponent implements OnInit {
                                 
                                 });
 
+  }
+
+  public onClickDashboard()
+  {
+    console.log("Reached onClickDashboard")
+    this.Auth.setLoggedInStatus(true)
   }
 
 }

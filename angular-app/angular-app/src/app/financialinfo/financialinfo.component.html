@@ -2,30 +2,39 @@
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6050dc">
         <div class="container">
             <div class="navbar-header">
-                <a href="/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
+                <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
                 </a>
             </div>
             <li class="nav-item">
-                <a class="nav-link" href="/dashboard" class="navbar-brand">Dashboard</a>
+                <a class="nav-link" href="#/dashboard" class="navbar-brand">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/useraccount" class="navbar-brand">User Accounts</a>
+                <a class="nav-link" href="#/useraccount" class="navbar-brand">User Accounts</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/financialinfo" class="navbar-brand">Financial Info</a>
+                <a class="nav-link" href="#/financialinfo" class="navbar-brand">Financial Info</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/addadmin" class="navbar-brand">Add Admin</a>
+                <a class="nav-link" href="#/addadmin" class="navbar-brand">Add Admin</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/customerfb" class="navbar-brand">Customer Feedback</a>
+                <a class="nav-link" href="#/customerfb" class="navbar-brand">Customer Feedback</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/login" class="navbar-brand">Sign Out</a>
+                <a class="nav-link" href="#/login" class="navbar-brand">Sign Out</a>
             </li>
         </div>
     </nav>
-    <h1 style="text-align: center;">Financial Info Placeholder</h1>
+    <h4 style="color: #6050dc">Defaulters List:</h4>
+    <ag-grid-angular 
+    style="width: 100%; height:400px; color:#531840; font-size: 15px;"
+    class="ag-theme-balham"
+    [rowData]="rowData"
+    [columnDefs]="columnDefs"
+    (gridReady)="onGridReady($event)"
+    >
+    </ag-grid-angular>
+
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">
 

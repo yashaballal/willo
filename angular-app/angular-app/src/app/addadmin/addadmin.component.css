@@ -11,3 +11,20 @@ nav a.hover {
   height:60px;   /* Height of the footer */
   background:#6050dc;
 }
+#addAdminBtn{
+  background-color: #6050dc;
+  border-color: #6050dc;
+  color:#FFFFFF;
+  padding: 15px 32px;
+}
+#textId,#textpwdId{
+  width: 50%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-color: #6050dc;
+}
+
+#inputAdminDiv{
+  text-align: center;
+}

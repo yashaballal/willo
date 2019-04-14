@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl } from '@angular/forms';
 import * as jsPDF from 'jspdf';
 
 
@@ -15,11 +16,23 @@ export class UseraccountComponent implements OnInit {
 
   constructor(private Auth:AuthService, private router:Router) { }
 
+  public colDisplay = ["Email ID", "Name"]
   public columns = ["email","name"];
   public characters = [];
-  public conditionFlag = false;
+  public conditionFlag:boolean = false;
   public displayData;
+  public displayEditor:boolean = false;
   public index;
+  editorForm : FormGroup; 
+  formText : String;
+  public rowData;
+  public emailID;
+
+    columnDefs = [
+      {headerName: 'Name', field: 'name', sortable: true, filter:true },
+      {headerName: 'Email', field: 'email', sortable: true, filter:true },
+  ];
+
 
   ngOnInit()
   {
@@ -28,7 +41,9 @@ export class UseraccountComponent implements OnInit {
       console.log("Reached this part in !getLoggedInStatus")
       this.router.navigate(['/login'])
     }
-
+    this.editorForm = new FormGroup({
+      'editor': new FormControl(null)
+    })
     this.plotOnRecord();
   }
 
@@ -48,25 +63,54 @@ export class UseraccountComponent implements OnInit {
     data.forEach(function(value){
       self.characters.push(value);
     });
+    self.rowData = data;
 
     });
 
   }
+
+   public onSubmit()
+   {
+      this.formText = this.editorForm.get('editor').value;
+      console.log("Reached here again");
+      const doc = new jsPDF();
+      doc.setFontSize(12);
+      this.formText = this.formText.replace(/{{name}}/g, this.displayData["name"]);
+      this.formText = this.formText.replace(/{{city}}/g, this.displayData["city"]);
+      this.formText = this.formText.replace(/<p>/g,'');
+      this.formText = this.formText.replace(/<\/p>/g,'\n');
+      this.formText = this.formText.replace(/<br>/g, '\n');
+
+      doc.text(this.formText, 10, 10);
+      doc.save("CustomWill.pdf");
+   }
 
    public onClickPDF()
    {
       console.log("Reached here again");
       const doc = new jsPDF();
       doc.setFontSize(12);
-      doc.text("I, "+this.displayData["name"]+", a resident in the city of \n"+this.displayData["city"]+", County of "+this.displayData["county"]+", State of "+this.displayData["state"]+", declare that this is my will.\n 1. Revocation. I revoke all wills that I have previously made.", 10, 10);
+      this.formText = this.formText.replace(/{{name}}/g, this.displayData["name"]);
+      this.formText = this.formText.replace(/{{city}}/g, this.displayData["city"]);
+      this.formText = this.formText.replace(/<p>/g,'');
+      this.formText = this.formText.replace(/<\/p>/g,'\n');
+      this.formText = this.formText.replace(/<br>/g, '\n');
+
+      doc.text(this.formText, 10, 10);
       doc.save("Will.pdf");
    }
 
-  public loadCourseReview(email_id)
+   createCustomWill()
+   {
+      this.displayEditor = true;
+   }
+
+  public loadCourseReview(event)
   {
     this.conditionFlag=true;
-    console.log("Email is: "+email_id);
-    this.displayData = this.search(email_id, this.characters);
+    this.emailID = (event.target as Element).innerHTML; 
+    console.log("Email is: "+this.emailID);
+    this.displayData = this.search(this.emailID, this.characters);
 
     console.log("This is stored in displayData:"+this.displayData.email);
   }

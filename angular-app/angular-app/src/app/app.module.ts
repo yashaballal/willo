@@ -11,6 +11,9 @@ import { AddadminComponent } from './addadmin/addadmin.component';
 import { CustomerfbComponent } from './customerfb/customerfb.component';
 import { LoginComponent } from './login/login.component';
 import { FpwdComponent } from './fpwd/fpwd.component';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {AgGridModule} from "ag-grid-angular";
 
 @NgModule({
   declarations: [
@@ -27,8 +30,12 @@ import { FpwdComponent } from './fpwd/fpwd.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ChartsModule
-  ],
+    ChartsModule,
+    QuillModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AgGridModule.withComponents([])
+    ],
   providers: [DashboardComponent],
   bootstrap: [AppComponent]
 })

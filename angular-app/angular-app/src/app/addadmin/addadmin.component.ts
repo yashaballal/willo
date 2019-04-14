@@ -20,4 +20,23 @@ export class AddadminComponent implements OnInit {
 
   }
 
+  displayPass:boolean = false;
+  displayFail:boolean = false;
+
+  addAdmin(textInput:string, passwordInput:string)
+  {
+    console.log("The text input is: "+ textInput+"The password input is: "+passwordInput);
+    this.Auth.addAdminApi(textInput, passwordInput).subscribe(data=>{
+        if(data['result']){
+          this.displayPass = true;
+          this.displayFail = false;
+        }
+        else{
+          this.displayFail = true;
+          this.displayPass = false;
+          }
+
+    });
+  }
+
 }

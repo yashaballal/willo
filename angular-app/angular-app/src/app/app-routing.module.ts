@@ -19,7 +19,7 @@ const routes: Routes = [{ path:'', redirectTo:'/login', pathMatch:'full'},
 						{ path:'fpwd', component: FpwdComponent}];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
