@@ -15,6 +15,9 @@ import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AgGridModule} from "ag-grid-angular";
 
+import { HeaderComponent } from "./Common/Header/Header.component";
+import { FooterComponent } from "./Common/Footer/Footer.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +28,8 @@ import {AgGridModule} from "ag-grid-angular";
     CustomerfbComponent,
     LoginComponent,
     FpwdComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

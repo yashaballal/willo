@@ -25,15 +25,20 @@
             </li>
         </div>
     </nav>
-    <div class="chart-container" style="position: relative; height:40vh; width:80vw">
-        <canvas id="myChart1"></canvas>
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-6" id = "bar" class="chart-container" style=" height:50%; width:50%; ">
+            <canvas id="myChart"></canvas>
+        </div>
+              <div class="col-xs-6" id = "doughnut" class="chart-container1" style="height:50%; width:50%;">
+                  <canvas id="myChart3" ></canvas>
+              </div>
+        </div>
+      <div id = "line" class="chart-container2" style=" height:50%; width:70%; float: left;">
+        <canvas id="myChart4"></canvas>
+      </div>
     </div>
-    <div id = "doughnut" class="chart-container" style="position: relative; height:40vh; width:80vw; margin-left: 620px;">
-      <canvas id="myChart3"></canvas>
-    </div>
-    <div id = "line" class="chart-container" style="position: relative; height:40vh; width:80vw; float: left;">
-      <canvas id="myChart2"></canvas>
-    </div>
+      
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">
 
