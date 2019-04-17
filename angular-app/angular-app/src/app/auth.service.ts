@@ -86,4 +86,18 @@ export class AuthService {
     return this.http.get<any[]>(financeDetailsURL);
   }
 
+  getSubModelDetails()
+  {
+    var subModelDetailsURL = apiURL+"submodel";
+    console.log("Reached getSubModelDetails"+ subModelDetailsURL);
+    return this.http.get<any[]>(subModelDetailsURL);    
+  }
+
+  setSubModelDetails(subInput:string, discInput:string)
+  {
+    var subModelDetailsURL = apiURL+"submodel";
+    console.log("Reached setSubModelDetails"+ subModelDetailsURL);
+    return this.http.post(subModelDetailsURL,{subInput,discInput});    
+  }
+
 }

@@ -11,3 +11,34 @@ nav a.hover {
   height:60px;   /* Height of the footer */
   background:#6050dc;
 }
+
+#ConfirmUpdate{
+  background-color: #6050dc;
+  border-color: #6050dc;
+  color:#FFFFFF;
+  padding: 15px 32px;
+}
+
+#ResetButton{
+  background-color: #6050dc;
+  border-color: #6050dc;
+  color:#FFFFFF;
+  padding: 15px 32px;
+  margin: 8px 0 0 20px;
+}
+
+#subID{
+  width: 50%;
+  padding: 8px 20px;
+  margin: 8px 0 0 12px;
+  box-sizing: border-box;
+  border-color: #6050dc;
+}
+
+#discID{
+  width: 50%;
+  padding: 8px 20px;
+  margin: 8px 0 0 7px;
+  box-sizing: border-box;
+  border-color: #6050dc;
+}

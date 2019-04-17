@@ -25,15 +25,42 @@
             </li>
         </div>
     </nav>
-    <h4 style="color: #6050dc">Defaulters List:</h4>
-    <ag-grid-angular 
-    style="width: 100%; height:400px; color:#531840; font-size: 15px;"
-    class="ag-theme-balham"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    (gridReady)="onGridReady($event)"
-    >
-    </ag-grid-angular>
+
+     <div class="container-fluid">
+        <div class="row">
+            <div id="first" class="col-lg-6">
+                <h4 style="color: #6050dc">Current Subscription Model:</h4>
+                <br>
+                <font size=3 style="font-weight:bold;">Subsrciption fee: </font>
+                ${{subscriptionPrice}}  <input type="text" [(ngModel)]="priceVal" id="subID" placeholder="New subscription fee" #subInput>
+                <br><br>
+                <font size=3 style="font-weight:bold;">Discount offered: </font>
+                {{subscriptionDiscount}}%  <input type="text" [(ngModel)]="discVal" id="discID" placeholder="New discount %" #discInput>
+                <br><br>
+                <button id="ConfirmUpdate" (click)="onClickingUpdate()">Update
+                </button>
+                <button id="ResetButton" (click)="onClickingReset()">Reset
+                </button>
+                <h6 *ngIf="displayPass" style="color:#6050dc">Updated!</h6>
+                <h6 *ngIf="displayFail" style="color:#6050dc">Please enter something to update!</h6>
+
+            </div>
+
+            <div class="col-lg-6" id="third">
+                <h4 style="color: #6050dc">Defaulters List:</h4>
+                <ag-grid-angular 
+                style="width: 100%; height:400px; color:#531840; font-size: 15px;"
+                class="ag-theme-balham"
+                [rowData]="rowData"
+                [columnDefs]="columnDefs"
+                (gridReady)="onGridReady($event)">
+                </ag-grid-angular>
+            </div>
+        </div>
+    </div>
+
+    
+    
 
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">
