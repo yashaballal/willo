@@ -18,11 +18,9 @@ export class FinancialinfoComponent implements OnInit {
   public emailID;
   displayFlag:boolean = false;
   displayText:boolean = false;
-  conditionFlag:boolean = true;
   public rowData;
   public subscriptionPrice = 0;
   public subscriptionDiscount = 0;
-  public conditionFlag:boolean = false;
   public displayPass:boolean = false;
   public displayFail:boolean = false;
   public priceVal:string;

@@ -45,13 +45,15 @@
             </div>
             <div class="col-lg-6" id="third">
                 <h4 style="color: #6050dc">Defaulters List:  Click on any Email-ID to reply</h4>
-                <ag-grid-angular 
-                style="width: 100%; height:400px; color:#531840; font-size: 15px;"
-                class="ag-theme-balham"
-                [rowData]="rowData"
-                [columnDefs]="columnDefs"
-                (gridReady)="onGridReady($event)">
-                </ag-grid-angular>
+                    <ag-grid-angular 
+                    style="width: 100%; height:400px; color:#531840; font-size: 15px;"
+                    class="ag-theme-balham"
+                    [rowData]="rowData"
+                    [columnDefs]="columnDefs"
+                    (gridReady)="onGridReady($event)"
+                    (click)="loadMailBox($event)"
+                    >
+                    </ag-grid-angular>
             </div>
         </div>
         <div *ngIf=displayFlag layout="row" flex>
