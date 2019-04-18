@@ -86,11 +86,26 @@ export class AuthService {
     return this.http.get<any[]>(financeDetailsURL);
   }
 
+<<<<<<< HEAD
   getPieDetails()
   {
     var pieDetailsURL = apiURL+"piedetails";
     console.log("Reached getPieDetails"+pieDetailsURL);
     return this.http.get<any[]>(pieDetailsURL);
+=======
+  getSubModelDetails()
+  {
+    var subModelDetailsURL = apiURL+"submodel";
+    console.log("Reached getSubModelDetails"+ subModelDetailsURL);
+    return this.http.get<any[]>(subModelDetailsURL);    
+  }
+
+  setSubModelDetails(subInput:string, discInput:string)
+  {
+    var subModelDetailsURL = apiURL+"submodel";
+    console.log("Reached setSubModelDetails"+ subModelDetailsURL);
+    return this.http.post(subModelDetailsURL,{subInput,discInput});    
+>>>>>>> 357a18b932a8a3a8eba2b1d7da6b13f805b59b08
   }
 
 }

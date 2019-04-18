@@ -19,8 +19,15 @@ export class FinancialinfoComponent implements OnInit {
   displayFlag:boolean = false;
   displayText:boolean = false;
   conditionFlag:boolean = true;
-
   public rowData;
+  public subscriptionPrice = 0;
+  public subscriptionDiscount = 0;
+  public conditionFlag:boolean = false;
+  public displayPass:boolean = false;
+  public displayFail:boolean = false;
+  public priceVal:string;
+  public discVal:string;
+
   columnDefs = [
       {headerName: 'Name', field: 'name', sortable: true, filter:true },
       {headerName: 'Email', field: 'email', sortable: true, filter:true },
@@ -41,6 +48,43 @@ export class FinancialinfoComponent implements OnInit {
             this.rowData = data;
     });
 
+    this.Auth.getSubModelDetails().subscribe(data=>{
+            var self = this;
+            this.subscriptionPrice = data[0].annual_sub_price;
+            this.subscriptionDiscount = data[0].discount_percent;
+
+    });
+
+  }
+
+  onClickingReset(){
+    this.priceVal="";
+    this.discVal="";
+  }
+
+  onClickingUpdate()
+  {
+
+    this.Auth.setSubModelDetails(this.priceVal, this.discVal).subscribe(data=>{
+        if(data['result']){
+          console.log("Got a positive result"); 
+          this.displayPass = true;
+          this.displayFail = false;
+        }
+        else{
+          this.displayFail = true;
+          this.displayPass = false;
+          }
+
+          this.Auth.getSubModelDetails().subscribe(data=>{
+          this.subscriptionPrice = data[0].annual_sub_price;
+          this.subscriptionDiscount = data[0].discount_percent;          
+    });
+
+    });
+    this.priceVal="";
+    this.discVal="";
+
   }
 
   onGridReady(params) {
@@ -56,7 +100,6 @@ export class FinancialinfoComponent implements OnInit {
       });
     });
   }
-
   public search(emailId, characters){
     for (var i=0; i < characters.length; i++) {
         if (characters[i].email === emailId) {
@@ -94,5 +137,4 @@ export class FinancialinfoComponent implements OnInit {
     }
     });
   }
-
 }
