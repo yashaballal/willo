@@ -4,7 +4,9 @@ import { AuthService } from '../auth.service';
 import { HttpClient } from '@angular/common/http';
 import { Chart } from 'chart.js';
 import { ChartModule } from 'angular2-chartjs';
-
+Chart.defaults.global.animation.duration=800;
+//+Chart.defaults.global.scales.ticks.beginAtZero = true;
+Chart.defaults.scale.ticks.beginAtZero = true;
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -26,6 +28,8 @@ export class DashboardComponent implements OnInit {
   public lineChartData = [];
   
   public myBarChart;
+  public myLineChart;
+  public myPieChart;
 
   public lineChartLabels = [];
   
@@ -66,35 +70,108 @@ export class DashboardComponent implements OnInit {
 
   public loadCharts()
   {
+    var color = Chart.helpers.color;
+    
+    var data2={ labels:this.barChartLabels, 
+                datasets:[
+                            {       
+                                    label:"Monthly revenue",
+                                    backgroundColor: [
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(255, 206, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)',
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(255, 206, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)',
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(255, 206, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)'
+                                  ],
+                                  borderColor: [
+                                      'rgba(255, 99, 132, 1)',
+                                      'rgba(54, 162, 235, 1)',
+                                      'rgba(255, 206, 86, 1)',
+                                      'rgba(75, 192, 192, 1)',
+                                      'rgba(153, 102, 255, 1)',
+                                      'rgba(255, 159, 64, 1)',
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(255, 206, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)',
+                                      
+                                  ],
+                                  borderWidth: 1,
+                                    data:this.data1
+                            }
+                          ]
 
-    var data2={ labels:this.barChartLabels, datasets:[{label:"Monthly revenue",
-                                                      backgroundColor:"#6050dc",
-                                                      data:this.data1}] };
-    var data3={ labels:this.pieChartLabels, 
-      datasets:[
-                  {       
-                          label:"Subscription wise Pie Chat",
-                          backgroundColor:"#6050dc",
-                          data:this.data1
-                  }
-                ]
+                          
+                                                      
+              };
+              
 
-                                            
+
+
+              var data3={ labels:this.pieChartLabels, 
+                datasets:[
+                            {       
+                                    label:"Subscription wise Pie Chat",
+                                    backgroundColor: [
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(255, 206, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)',
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(255, 206, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)',
+                                      'rgba(255, 99, 132, 0.2)',
+                                      'rgba(54, 162, 235, 0.2)',
+                                      'rgba(255, 206, 86, 0.2)',
+                                      'rgba(75, 192, 192, 0.2)',
+                                      'rgba(153, 102, 255, 0.2)',
+                                      'rgba(255, 159, 64, 0.2)'
+                                  ], 
+                                   
+                                    data:this.data1
+                            }
+                          ]
+
+                                                      
+              };
+
+              var data4={ labels:this.lineChartLabels, 
+                datasets:[
+                            {       
+                                    label:"Subscription wise Pie Chat",
+                                    borderColor: "#3e95cd",
+                                    fill: true,
+                                    //lineTension : 0.9,
+                                    data:this.data1
+                            }
+                          ]
+
+  
     };
-    var data4={ labels:this.lineChartLabels, 
-      datasets:[
-                  {       
-                          label:"Line Chart",
-                          borderColor: "#3e95cd",
-                          fill: false,
-                          data:this.data1
-                  }
-                ]
-    };
 
-    var canvas1 = <HTMLCanvasElement>document.getElementById("myChart1");
-    var ctx = canvas1.getContext("2d");
-    var myBarChart = new Chart(ctx, {
+    var canvas1 = <HTMLCanvasElement>document.getElementById("myChart");
+    var ctx1 = canvas1.getContext("2d");
+    this.myBarChart = new Chart(ctx1, {
                                      type: 'bar',
                                      data: data2,
                                      options: {
@@ -124,10 +201,10 @@ export class DashboardComponent implements OnInit {
                                       }
                                 );
 
-    var canvas2 = <HTMLCanvasElement>document.getElementById("myChart2");
+    var canvas2 = <HTMLCanvasElement>document.getElementById("myChart4");
     var ctx2 = canvas2.getContext("2d");
     
-    var myLineChart = new Chart(ctx2, {
+    this.myLineChart = new Chart(ctx2, {
                                      type: 'line',
                                      data: data4,
                                      
@@ -183,7 +260,7 @@ export class DashboardComponent implements OnInit {
     var ctx3 = canvas3.getContext("2d");
     
     // For a pie chart
-    var myPieChart = new Chart(ctx3, {
+    this.myPieChart = new Chart(ctx3, {
                                       type: 'doughnut',
                                       data: data3,
                                       options: {
