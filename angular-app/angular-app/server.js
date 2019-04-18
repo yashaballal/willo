@@ -16,6 +16,7 @@ const customermail=require('./router/routes/customermail');
 const addadmin = require('./router/routes/addadmin');
 const financial = require('./router/routes/financial');
 const piedetails = require('./router/routes/piedetails');
+const submodel = require('./router/routes/submodel')
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -34,6 +35,7 @@ app.use('/api/customermail', customermail);
 app.use('/api/addadmin', addadmin);
 app.use('/api/financial', financial);
 app.use('/api/piedetails', piedetails);
+app.use('/api/submodel', submodel);
 
 //Catch all other route requests and return it to the index
 app.get('*',(req,res)=>{
