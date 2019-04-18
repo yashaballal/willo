@@ -86,4 +86,11 @@ export class AuthService {
     return this.http.get<any[]>(financeDetailsURL);
   }
 
+  getPieDetails()
+  {
+    var pieDetailsURL = apiURL+"piedetails";
+    console.log("Reached getPieDetails"+pieDetailsURL);
+    return this.http.get<any[]>(pieDetailsURL);
+  }
+
 }

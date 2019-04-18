@@ -33,7 +33,7 @@ router.post('/', function (req, res) {
        var mailOptions = {
         from: 'willo@gmail.com', // sender address
         to: emailid, // list of receivers
-        subject: 'Willo - Thank you for contacting us', // Subject line
+        subject: 'From Willo:Your online will making app', // Subject line
         html: response   // plain text body
       };
       mailTransporter.sendMail(mailOptions, function (err, info) {

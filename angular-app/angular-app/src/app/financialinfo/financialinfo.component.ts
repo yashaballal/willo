@@ -15,14 +15,16 @@ export class FinancialinfoComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
-
+  public emailID;
+  displayFlag:boolean = false;
+  displayText:boolean = false;
+  conditionFlag:boolean = true;
 
   public rowData;
   columnDefs = [
-      {headerName: 'Will ID', field: 'will_id', sortable: true, filter:true },
-      {headerName: 'Last Payment Date', field: 'last_payment_dt', sortable: true, filter:true },
-      {headerName: 'Amount', field: 'amount', sortable: true, filter:true},
-      {headerName: 'Account Status', field: 'account_status', sortable: true, filter:true},
+      {headerName: 'Name', field: 'name', sortable: true, filter:true },
+      {headerName: 'Email', field: 'email', sortable: true, filter:true },
+      {headerName: 'Last Payment Date', field: 'last_payment_dt', sortable: true, filter:true},
       {headerName: 'Due Date', field: 'due_date', sortable: true, filter:true}
   ];
 
@@ -55,5 +57,42 @@ export class FinancialinfoComponent implements OnInit {
     });
   }
 
+  public search(emailId, characters){
+    for (var i=0; i < characters.length; i++) {
+        if (characters[i].email === emailId) {
+            return characters[i];
+        }
+      }
+  }
+
+
+  public loadMailBox(event)
+  {
+    this.displayText = false;
+    console.log("The emailID to which mail would be sent: "+(event.target as Element).innerHTML);
+    this.emailID = (event.target as Element).innerHTML;  
+    if(this.emailID.includes("@") && this.emailID.includes("."))
+    {
+          this.displayFlag = true;
+    }
+    else
+    {
+      this.displayFlag = false;
+    }
+  }
+
+  public sendEmailFunction(response:string)
+  {
+    console.log(response+ " to emailID "+ this.emailID);
+    this.Auth.sendReply(this.emailID, response).subscribe(data=>{
+    if(data['result']){
+      this.displayFlag = false;
+      this.displayText = true;
+    }
+    else{
+      window.alert("Oops! something went wrong! Please try again")
+    }
+    });
+  }
 
 }

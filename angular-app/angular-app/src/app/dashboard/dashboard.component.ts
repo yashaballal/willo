@@ -36,6 +36,8 @@ export class DashboardComponent implements OnInit {
   public barChartLabels = [];
   public pieChartLabels = [];
   public data1 = [];
+  public dataPie = [];
+  public stateWiseData = [];
 
   ngOnInit() 
   {
@@ -57,15 +59,23 @@ export class DashboardComponent implements OnInit {
             data.forEach(function (value){
               console.log(value.year_mm);
               self.barChartLabels.push(value.year_mm);
-              self.pieChartLabels.push(value.year_mm);
               self.lineChartLabels.push(value.year_mm);
               self.data1.push(value.amount);
             });
-
             this.barChartData = [{data:this.data1, label: 'Series A'}];
             this.loadCharts();
+
             });
 
+    this.Auth.getPieDetails().subscribe(data=>{
+            var self=this;
+            console.log(data);
+            data.forEach(function(value){
+            self.pieChartLabels.push(value.state); 
+            self.dataPie.push(value.count_user);             
+            });
+            this.loadCharts();
+    });
   }
 
   public loadCharts()
@@ -74,8 +84,7 @@ export class DashboardComponent implements OnInit {
     
     var data2={ labels:this.barChartLabels, 
                 datasets:[
-                            {       
-                                    label:"Monthly revenue",
+                            {
                                     backgroundColor: [
                                       'rgba(255, 99, 132, 0.2)',
                                       'rgba(54, 162, 235, 0.2)',
@@ -126,7 +135,7 @@ export class DashboardComponent implements OnInit {
               var data3={ labels:this.pieChartLabels, 
                 datasets:[
                             {       
-                                    label:"Subscription wise Pie Chat",
+                                    label:"State-wise subscribers",
                                     backgroundColor: [
                                       'rgba(255, 99, 132, 0.2)',
                                       'rgba(54, 162, 235, 0.2)',
@@ -148,7 +157,7 @@ export class DashboardComponent implements OnInit {
                                       'rgba(255, 159, 64, 0.2)'
                                   ], 
                                    
-                                    data:this.data1
+                                    data:this.dataPie
                             }
                           ]
 
@@ -158,7 +167,7 @@ export class DashboardComponent implements OnInit {
               var data4={ labels:this.lineChartLabels, 
                 datasets:[
                             {       
-                                    label:"Subscription wise Pie Chat",
+                                    label:"State-wise subscribers",
                                     borderColor: "#3e95cd",
                                     fill: true,
                                     //lineTension : 0.9,
@@ -192,14 +201,14 @@ export class DashboardComponent implements OnInit {
                                                 },
                                                 responsive:true,
                                                 maintainAspectRatio: false,
-                                                legend: { display: true },
+                                                legend: { display: false },
                                                 title: {
                                                   display: true,
+                                                  fontSize: 15,
                                                   text: 'Monthly earnings report'
                                                 }
                                               }
-                                      }
-                                );
+                                      });
 
     var canvas2 = <HTMLCanvasElement>document.getElementById("myChart4");
     var ctx2 = canvas2.getContext("2d");
@@ -210,7 +219,7 @@ export class DashboardComponent implements OnInit {
                                      
                                      options: {
                                       legend: { 
-                                        display: true,
+                                        display: false,
                                         labels: {
                                           fontColor: '#fffff',
                                           fontSize: 15,
@@ -280,7 +289,7 @@ export class DashboardComponent implements OnInit {
                                           display: true,
                                           fontSize: 15,
                                           
-                                          text: 'Subscription model wise Pie Chat'
+                                          text: 'State-wise subscribers'
                                         }
                                       }
                                 

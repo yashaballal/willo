@@ -26,20 +26,21 @@
         </div>
     </nav>
     <br>
-    <h4 style="color: #6050dc">Select a User</h4>
     <br>
     <div class="container-fluid">
         <div class="row">
-            <div id="first" class="col-lg-6">
+            <div id="first" class="col-lg-6" style="text-align: center;">
+              <h4 style="color: #6050dc; display: inline-block;">Select a User</h4>
+              <br>
               <ag-grid-angular 
-                style="width: 100%; height:400px; color:#531840; font-size: 15px;"
+                style="width: 50%; height:400px; color:#531840; font-size: 15px; display: inline-block;"
                 class="ag-theme-balham"
                 [rowData]="rowData"
                 [columnDefs]="columnDefs"
                 (gridReady)="onGridReady($event)"
                 (click)="loadCourseReview($event)"
                 >
-              </ag-grid-angular>            
+              </ag-grid-angular>    
             </div>
             <div class="col-lg-6" id="second" *ngIf=conditionFlag >
                 <font size=5 color="#6050dc">{{displayData.name}}</font>

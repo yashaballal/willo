@@ -11,3 +11,17 @@ nav a.hover {
   height:60px;   /* Height of the footer */
   background:#6050dc;
 }
+
+#sendEmailBtn{
+  background-color: #531840;
+  border-color: #531840;
+}
+
+#textId{
+	height: 100px;
+	width: 600px;
+  padding: 10px;
+  border-radius: 5px;
+  line-height: 1.5;
+  border-color: #6050dc;
+ }
