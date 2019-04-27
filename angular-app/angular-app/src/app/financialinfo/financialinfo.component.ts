@@ -247,6 +247,9 @@ onGridReadyDisc(params) {
   public loadCourseReview(event){
     this.clickConditionFlag=true;
     this.conditionFlag=false;
+    this.displayFailPrimDisc=false;
+    this.displayFailDisc=false;
+    this.displayPassDisc=false;
     this.selectedPromo = (event.target as Element).innerHTML;
   }
 }
