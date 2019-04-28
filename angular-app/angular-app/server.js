@@ -17,13 +17,9 @@ const customermail=require('./router/routes/customermail');
 const addadmin = require('./router/routes/addadmin');
 const financial = require('./router/routes/financial');
 const piedetails = require('./router/routes/piedetails');
-<<<<<<< HEAD
-const submodel = require('./router/routes/submodel');
 const asset = require('./router/routes/asset');
-=======
 const submodel = require('./router/routes/submodel')
 const discount = require('./router/routes/discount')
->>>>>>> 92c8b3e87f96245d50159cdc1d62fd6591837cd7
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -44,11 +40,8 @@ app.use('/api/addadmin', addadmin);
 app.use('/api/financial', financial);
 app.use('/api/piedetails', piedetails);
 app.use('/api/submodel', submodel);
-<<<<<<< HEAD
 app.use('/api/asset?:will_id', asset);
-=======
 app.use('/api/discount', discount);
->>>>>>> 92c8b3e87f96245d50159cdc1d62fd6591837cd7
 
 //Catch all other route requests and return it to the index
 app.get('*',(req,res)=>{
