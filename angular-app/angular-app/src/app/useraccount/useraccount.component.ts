@@ -34,6 +34,10 @@ export class UseraccountComponent implements OnInit {
   public rowData;
   public emailID;
   public user_id
+  private gridApi;
+  private gridColumnApi;
+  private rowSelection;
+
 
     columnDefs = [
       {headerName: 'Name', field: 'name', sortable: true, filter:true },
@@ -43,6 +47,7 @@ export class UseraccountComponent implements OnInit {
 
   ngOnInit()
   {
+    this.rowSelection = "single";
     if(!this.Auth.getLoggedInStatus())
     {
       console.log("Reached this part in getLoggedInStatus")
@@ -75,6 +80,60 @@ export class UseraccountComponent implements OnInit {
     });
   }
 
+  onSelectionChanged() {
+    console.log("Reached onSelectionChanged");
+    var selectedRows = this.gridApi.getSelectedRows();
+    var selectedRowsString = "";
+    selectedRows.forEach(function(selectedRow, index) {
+      console.log("Reached the forEach function");
+      if (index !== 0) {
+        console.log("Reached the if condition inside forEach"); 
+        selectedRowsString += ", ";
+      }
+      selectedRowsString += selectedRow.email;
+    });
+    console.log(selectedRowsString);
+
+    this.beneficiaryData = [];
+    this.witnessData = [];
+    this.executorData = []; 
+    this.user_id = this.search(selectedRowsString, this.characters);
+    console.log(this.user_id)
+    this.Auth.getUserAccountDetails1(this.user_id).subscribe(data =>{
+    this.displayData = data;
+    this.conditionFlag=true;
+    for (var i=0; i < Object.keys(this.displayData).length; i++) {
+        if (this.displayData[i].party_type === "owner") {
+          this.ownerData = this.displayData[i];    
+        }
+        else if(this.displayData[i].party_type === "beneficiary")
+        {
+          this.beneficiaryData.push(this.displayData[i]);
+        }
+        else if(this.displayData[i].party_type.includes("witness"))
+        {
+          this.witnessData.push(this.displayData[i]);
+        }
+        else if(this.displayData[i].party_type.includes("executor"))
+        {
+          this.executorData.push(this.displayData[i]);
+        }
+      }
+
+      this.Auth.getAssetData(this.displayData[0].will_id).subscribe(data1=>{
+          this.conditionFlagAsset = true;
+          this.assetData = data1;
+      });
+
+
+      });
+
+  }
+
+  onGridReady(params) {
+    this.gridApi = params.api;
+    this.gridColumnApi = params.columnApi;
+  }
    public onSubmit()
    {
       this.formText = this.editorForm.get('editor').value;
@@ -108,7 +167,7 @@ export class UseraccountComponent implements OnInit {
 
    createCustomWill()
    {
-      this.displayEditor = true;
+      window.open('#/editor');
    }
 
   public loadCourseReview(event)

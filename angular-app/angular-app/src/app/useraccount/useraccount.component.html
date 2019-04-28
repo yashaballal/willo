@@ -39,7 +39,9 @@
                 [columnDefs]="columnDefs"
                 [paginationAutoPageSize]="true"
                 [pagination]="true"
-                (click)="loadCourseReview($event)"
+                [rowSelection]="rowSelection"
+                (gridReady)="onGridReady($event)"
+                (selectionChanged)="onSelectionChanged($event)"
                 >
               </ag-grid-angular>    
             </div>
@@ -82,14 +84,14 @@
                         <br>
                         <font size=5 color="#5282EE">Witness List</font>
                         <br>
-                        <font size=4 color="#5282EE" *ngFor="let item of witnessData">{{item.name}}</font>
+                        <font size=4 color="#5282EE" *ngFor="let item of witnessData">{{item.name}}<br></font>
                     </div>
                     <div class="col-lg-5" id="sub4second">
                         <br>
                         <br>
                         <font size=5 color="#5282EE">Executor List</font>
                         <br>
-                        <font size=4 color="#5282EE" *ngFor="let item of executorData">{{item.name}}<br>{{item.email}}</font>
+                        <font size=4 color="#5282EE" *ngFor="let item of executorData">{{item.name}}<br>{{item.email}}<br></font>
                     </div>
                 </div>
                 <div class="row">
@@ -106,18 +108,6 @@
     </div>
     <br>
     <br>
-    <form [formGroup]="editorForm" (ngSubmit)="onSubmit()" *ngIf="displayEditor">
-        <div class="form-group">
-            <label for="editor"><h3>Insert Will Contents</h3></label>
-            <quill-editor id="quilled" formControlName="editor"></quill-editor>
-            <br>
-            <button id="textSubmit" style="color: #FFFFFF">Submit</button>
-            <br>
-            <br>
-            <br>
-        </div>
-    </form>
-
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">
 

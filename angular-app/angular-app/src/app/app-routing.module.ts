@@ -7,7 +7,7 @@ import {AddadminComponent} from './addadmin/addadmin.component'
 import {CustomerfbComponent} from './customerfb/customerfb.component'
 import { LoginComponent } from './login/login.component';
 import { FpwdComponent } from './fpwd/fpwd.component';
-
+import { EditorComponent } from './editor/editor.component';
 
 const routes: Routes = [{ path:'', redirectTo:'/login', pathMatch:'full'},
 						{ path:'login', component: LoginComponent},
@@ -16,7 +16,9 @@ const routes: Routes = [{ path:'', redirectTo:'/login', pathMatch:'full'},
 						{ path:'financialinfo', component: FinancialinfoComponent},
 						{ path:'addadmin', component: AddadminComponent},
 						{ path:'customerfb', component: CustomerfbComponent},
-						{ path:'fpwd', component: FpwdComponent}];
+						{ path:'fpwd', component: FpwdComponent},
+						{ path:'editor', component: EditorComponent}
+						];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { useHash: true })],

@@ -17,6 +17,7 @@ import {AgGridModule} from "ag-grid-angular";
 
 import { HeaderComponent } from "./Common/Header/Header.component";
 import { FooterComponent } from "./Common/Footer/Footer.component";
+import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FooterComponent } from "./Common/Footer/Footer.component";
     LoginComponent,
     FpwdComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    EditorComponent
   ],
   imports: [
     BrowserModule,
