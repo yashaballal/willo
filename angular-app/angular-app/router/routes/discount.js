@@ -62,7 +62,7 @@ router.post('/', function (req, res) {
       "code":200,
       "result":false
     });
-    throw error;
+    //throw error;
   }
   else
       res.send({            

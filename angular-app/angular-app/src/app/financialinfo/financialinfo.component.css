@@ -30,7 +30,7 @@ nav a.hover {
   background-color: #6050dc;
   border-color: #6050dc;
   color:#FFFFFF;
-  padding: 10px 20px;
+  padding: 6px 20px;
   margin: 0 0 0 20px;
 }
 
@@ -38,7 +38,7 @@ nav a.hover {
   background-color: #6050dc;
   border-color: #6050dc;
   color:#FFFFFF;
-  padding: 10px 10px;
+  padding: 6px 20px;
 }
 
 #ModifyPromo{
@@ -53,16 +53,28 @@ nav a.hover {
   background-color: #6050dc;
   border-color: #6050dc;
   color:#FFFFFF;
-  padding: 10px 10px;
+  padding: 6px 20px;
   margin: 8px 0 0 20px;
 }
 #SubmitButton{
   background-color: #6050dc;
   border-color: #6050dc;
   color:#FFFFFF;
-  padding: 10px 10px;
+  padding: 6px 20px;
+}
+#Confirm{
+  background-color: #6050dc;
+  border-color: #6050dc;
+  color:#FFFFFF;
+  padding: 6px 20px;
 }
 
+#Cancel{
+  background-color: #6050dc;
+  border-color: #6050dc;
+  color:#FFFFFF;
+  padding: 6px 20px;
+}
 #subID{
   width: 40%;
   padding: 5px 20px;
