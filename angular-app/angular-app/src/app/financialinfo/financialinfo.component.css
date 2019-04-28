@@ -30,17 +30,42 @@ nav a.hover {
   background-color: #39527D;
   border-color: #39527D;
   color:#FFFFFF;
+  padding: 10px 20px;
+  margin: 0 0 0 20px;
+}
+
+#AddPromo{
+  background-color: #6050dc;
+  border-color: #6050dc;
+  color:#FFFFFF;
+  padding: 10px 10px;
+}
+
+#ModifyPromo{
+  background-color: #6050dc;
+  border-color: #6050dc;
+  color:#FFFFFF;
+  padding: 10px 10px;
+  margin: 0 0 0 10px;
 }
 
 #ResetButton{
   background-color: #39527D;
   border-color: #39527D;
   color:#FFFFFF;
+  padding: 10px 10px;
+  margin: 8px 0 0 20px;
+}
+#SubmitButton{
+  background-color: #6050dc;
+  border-color: #6050dc;
+  color:#FFFFFF;
+  padding: 10px 10px;
 }
 
 #subID{
-  width: 50%;
-  padding: 8px 20px;
+  width: 40%;
+  padding: 5px 20px;
   margin: 8px 0 0 12px;
   box-sizing: border-box;
   border-color: #5282EE;
@@ -52,4 +77,9 @@ nav a.hover {
   margin: 8px 0 0 7px;
   box-sizing: border-box;
   border-color: #5282EE;
+}
+
+td.tableTag{
+  
+  padding:10px;
 }

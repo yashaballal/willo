@@ -43,14 +43,12 @@ export class AuthService {
   getStatsDetails()
   {
     var statsURL = apiURL+"stats";
-    console.log("Reached till this point getStatDetails "+statsURL);
     return this.http.get<any[]>(statsURL);
   }
 
   getUserAccountDetails()
   {
     var useraccountURL = apiURL+"useraccount";
-    console.log("Reached till this point getUserAccountDetails "+useraccountURL);
     return this.http.get<any[]>(useraccountURL);
   }
 
@@ -65,57 +63,68 @@ export class AuthService {
   getCustomerFeedbackDetails()
   {
     var customerfbURL = apiURL+"customerfb";
-    console.log("Reached till this point getUserAccountDetails "+customerfbURL);
     return this.http.get<any[]>(customerfbURL);
   }
 
   getPassword(emailID:string)
   {
     var fpwdURL = apiURL+"fpwd";
-    console.log("Reached getPassword: "+fpwdURL);
     return this.http.post(fpwdURL, {emailID});
   }
 
   sendReply(emailID:string, response:string)
   {
     var sendmailURL = apiURL+"customermail";
-    console.log("Reached getPassword: "+sendmailURL);
     return this.http.post(sendmailURL, {emailID, response});
   }
 
   addAdminApi(emailID:string, password:string)
   {
     var addadminURL = apiURL+"addadmin";
-    console.log("Reached addAdminApi"+ addadminURL);
     return this.http.post(addadminURL, {emailID, password});
   }
 
   getFinanceDetails()
   {
     var financeDetailsURL = apiURL+"financial";
-    console.log("Reached getFinanceDetails"+ financeDetailsURL);
     return this.http.get<any[]>(financeDetailsURL);
   }
 
   getPieDetails()
   {
     var pieDetailsURL = apiURL+"piedetails";
-    console.log("Reached getPieDetails"+pieDetailsURL);
     return this.http.get<any[]>(pieDetailsURL);
   }
   
   getSubModelDetails()
   {
     var subModelDetailsURL = apiURL+"submodel";
-    console.log("Reached getSubModelDetails"+ subModelDetailsURL);
     return this.http.get<any[]>(subModelDetailsURL);    
   }
 
-  setSubModelDetails(subInput:string, discInput:string)
+  // setSubModelDetails(subInput:string, discInput:string)
+  // {
+  //   var subModelDetailsURL = apiURL+"submodel";
+  //   console.log("Reached setSubModelDetails"+ subModelDetailsURL);
+  //   return this.http.post(subModelDetailsURL,{subInput,discInput});    
+  // }
+  setSubModelDetails(subInput:string)
   {
     var subModelDetailsURL = apiURL+"submodel";
-    console.log("Reached setSubModelDetails"+ subModelDetailsURL);
-    return this.http.post(subModelDetailsURL,{subInput,discInput});    
+    return this.http.post(subModelDetailsURL,{subInput});    
+  }
+  getDiscountDetails()
+  {
+    var discountlDetailsURL = apiURL+"discount";
+    return this.http.get<any[]>(discountlDetailsURL);    
+  }
+  setDiscountDetails(promoCode:string,discountVal:string,discountType:string,activityType:string,typed:string){
+    var discountlDetailsURL = apiURL+"discount";
+    return this.http.post(discountlDetailsURL,{promoCode,discountVal,discountType,activityType,typed});
+  }
+  updateDiscountDetails(selectedPromo:string,activitySelected:string,typed:string){
+    var discountlDetailsURL = apiURL+"discount";
+    return this.http.post(discountlDetailsURL,{selectedPromo,activitySelected,typed});
   }
 
   getAssetData(will_id:string)
