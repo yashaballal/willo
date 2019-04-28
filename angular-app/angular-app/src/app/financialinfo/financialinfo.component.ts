@@ -37,6 +37,9 @@ export class FinancialinfoComponent implements OnInit {
   public selectedPromo:string;
   public typed;
   public activitySelected:string="Valid";
+  public selectedEntity;
+  // public gridApi: any;
+  // public columnApi: any;
 
   
 
@@ -49,8 +52,8 @@ export class FinancialinfoComponent implements OnInit {
 
   columnDefsDisc =[
 
-      {headerName: 'Promo Code', field: 'promo_code', sortable: true, filter:true },
-      {headerName: 'Discount Value', field: 'discount_value', sortable: true, filter:true },
+      {headerName: 'Promo Code', field: 'promo_code', sortable: true, filter:true},
+      {headerName: 'Discount Value', field: 'discount_value', sortable: true, filter:true,type: "numericColumn"},
       {headerName: 'Discount Type', field: 'discount_type', sortable: true, filter:true},
       {headerName: 'Activity', field: 'valid_flag', sortable: true, filter:true}
 
@@ -145,7 +148,10 @@ export class FinancialinfoComponent implements OnInit {
           }
 
           }
-
+          this.promoCode=undefined;
+          this.discountVal=undefined;
+          this.discountType=undefined;
+          this.activityType=undefined;
     });
 
   }
@@ -171,12 +177,19 @@ export class FinancialinfoComponent implements OnInit {
 
     });
     this.priceVal="";
+    this.conditionFlag=false;
+    this.clickConditionFlag=false;
 
   }
 
   onClickingAddPromo(){
     this.conditionFlag=true;
     this.clickConditionFlag=false;
+    this.displayPass=false;
+    this.displayFail=false;
+    this.displayPassDisc=false;
+    this.displayFailDisc=false;
+    this.displayFailPrimDisc=false;
   }
 
   onGridReady(params) {
@@ -250,6 +263,9 @@ onGridReadyDisc(params) {
     this.displayFailPrimDisc=false;
     this.displayFailDisc=false;
     this.displayPassDisc=false;
+    this.displayPass=false;
+    this.displayFail=false;
     this.selectedPromo = (event.target as Element).innerHTML;
   }
+
 }

@@ -54,20 +54,19 @@
                 <br>
                 <button id="AddPromo" (click)="onClickingAddPromo()">Add Promo
                 </button>
-                <font *ngIf=clickConditionFlag size=3 style="font-weight:bold;">{{selectedPromo}}: </font>
-                <form *ngIf=clickConditionFlag>
-
-                    <label class="radio-inline">
+                
+                    <font *ngIf=clickConditionFlag style="margin-left: 20%" size=3 style="font-weight:bold;">{{selectedPromo}}: </font>
+                    <label *ngIf=clickConditionFlag class="radio-inline">
                         <input type="radio" name="optradio" value="Valid" [(ngModel)]="activitySelected">Valid
                     </label>
 
-                    <label class="radio-inline">
+                    <label *ngIf=clickConditionFlag class="radio-inline">
                         <input type="radio" name="optradio" value="Invalid" [(ngModel)]="activitySelected">Invalid
                     </label>
 
-                    <button id="Confirm" (click)="onClickingConfirm()">Confirm</button>
-                    <button id="Cancel" (click)="onClickingCancel()">Cancel</button>
-                </form>
+                    <button *ngIf=clickConditionFlag style="margin-left: 5%;"id="Confirm" (click)="onClickingConfirm()">Confirm</button>
+                    <button *ngIf=clickConditionFlag style="margin-left: 5%;"id="Cancel" (click)="onClickingCancel()">Cancel</button>
+                
                 <br>
 
                 <table *ngIf=conditionFlag>
@@ -110,8 +109,8 @@
                 </button>
                 <button id="ResetButton" (click)="onClickingReset()" *ngIf=conditionFlag>Reset
                 </button>
-                <h6  *ngIf="displayPassDisc" style="color:#6050dc">Updated!</h6>
-                <h6  *ngIf="displayFailDisc" style="color:#6050dc">Please enter all fields to update!</h6>
+                <h6  *ngIf="displayPassDisc" style="color:#6050dc">Added!</h6>
+                <h6  *ngIf="displayFailDisc" style="color:#6050dc">Please enter values in all fields!</h6>
                 <h6  *ngIf="displayFailPrimDisc" style="color:#6050dc">Promo code already exists!</h6>
             </div>
             <div class="col-lg-6" id="third">

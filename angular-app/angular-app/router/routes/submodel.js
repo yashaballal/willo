@@ -18,7 +18,8 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
   var sub_price = req.body.subInput;
-  if(sub_price==undefined){
+  console.log("The sub price is: "+sub_price);
+  if(sub_price==undefined||sub_price==""){
   		res.send({
 			"code":200,
 			"result":false
