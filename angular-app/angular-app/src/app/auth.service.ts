@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const apiURL= "http://localhost:4600/api/";
+//const apiURL= "http://localhost:4600/api/";
+const apiURL= "http://68.183.112.87:3000/api/";
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -50,6 +53,14 @@ export class AuthService {
     console.log("Reached till this point getUserAccountDetails "+useraccountURL);
     return this.http.get<any[]>(useraccountURL);
   }
+
+  getUserAccountDetails1(user_id:string)
+  {
+    var useraccountURL = apiURL+"useraccount1";
+    console.log("Reached till this point getUserAccountDetails "+useraccountURL);
+    return this.http.post<any[]>(useraccountURL,{user_id});
+  }
+
 
   getCustomerFeedbackDetails()
   {
@@ -105,5 +116,12 @@ export class AuthService {
     var subModelDetailsURL = apiURL+"submodel";
     console.log("Reached setSubModelDetails"+ subModelDetailsURL);
     return this.http.post(subModelDetailsURL,{subInput,discInput});    
+  }
+
+  getAssetData(will_id:string)
+  {
+    var assetDataURL = apiURL+"assets?will_id="+will_id;
+    console.log("Reached getAssetData:"+ assetDataURL);
+    return this.http.get<any[]>(assetDataURL);
   }
 }

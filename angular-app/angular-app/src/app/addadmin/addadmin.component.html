@@ -1,5 +1,5 @@
 <div id="maindiv">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6050dc">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5282EE">
         <div class="container">
             <div class="navbar-header">
                 <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
@@ -32,9 +32,10 @@
         <br>
         <input type="text" id="textpwdId" placeholder="New admin password" #passwordInput>
         <br>
-        <button id="addAdminBtn" (click)="addAdmin(textInput.value, passwordInput.value)">Add Admin</button>
-        <h6 *ngIf="displayPass" style="color:#6050dc">Admin Added!</h6>
-        <h6 *ngIf="displayFail" style="color:#6050dc">Something went wrong. Please try again!</h6>
+        <button id="addAdminBtn" (click)="addAdmin(textInput.value, passwordInput.value)" class="btn btn-primary">Add Admin</button>
+        <h6 *ngIf="displayPass" style="color:#5282EE">Admin Added!</h6>
+        <h6 *ngIf="displayFail1" style="color:#5282EE">Field cannot be left blank</h6>
+        <h6 *ngIf="displayFail2" style="color:#5282EE">User is already an admin</h6>
     </div>
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">

@@ -1,5 +1,5 @@
 <div id="maindiv">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6050dc">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5282EE">
         <div class="container">
             <div class="navbar-header">
                 <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
@@ -25,12 +25,14 @@
             </li>
         </div>
     </nav>
-    <h4 style="color: #6050dc">Click on any Email-ID to reply!</h4>
+    <h4 style="color: #5282EE">Click on any Email-ID to reply!</h4>
   <ag-grid-angular 
-    style="width: 100%; height:400px; color:#531840; font-size: 15px;"
+    style="width: 70%; height:400px; color:#531840; font-size: 15px;"
     class="ag-theme-balham"
     [rowData]="rowData"
     [columnDefs]="columnDefs"
+    [paginationAutoPageSize]="true"
+    [pagination]="true"
     (gridReady)="onGridReady($event)"
     (click)="onCellClicked($event)"
     >

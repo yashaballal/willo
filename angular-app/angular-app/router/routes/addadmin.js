@@ -24,23 +24,45 @@ router.post('/', function (req, res) {
 		throw error;
    }
    	
-   var sql = "INSERT INTO admin (username, password) VALUES (\'"+emailid+"\',\'"+password+"\')"
-   db.query(sql, function (error, results, fields) {
-    if (error) 
-	{
-		console.log(error);
-		res.send({
-			"code":200,
-			"result":false
-		});
-		throw error;
-	}
-	else
-	    res.send({            
-	    	"code":200,
-	        "result":true
-		});
-  });
+  db.query('SELECT * FROM admin WHERE username = ?',[emailid], function (error, results, fields) {
+  if (error) {
+     console.log("error ocurred",error);
+ 	}
+   else
+   {
+    if(results[0]){
+    	console.log("The value is contained in the database")
+    	res.send(
+    	{
+    		"code":300,
+    		"result":false
+    	});
+    }
+    else{
+	   var sql = "INSERT INTO admin (username, password) VALUES (\'"+emailid+"\',\'"+password+"\')"
+	   db.query(sql, function (error, results, fields) {
+	    if (error) 
+		{
+			console.log(error);
+			res.send({
+				"code":200,
+				"result":false
+			});
+			throw error;
+		}
+		else
+		{
+			console.log("Reached here 3")
+		    res.send({            
+		    	"code":200,
+		        "result":true
+			});		
+		}
+	  });
+    }
+   }
+   });
+
 });
 
 module.exports = router;

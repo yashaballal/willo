@@ -14,7 +14,7 @@ html{
   left:0;
   right:0;
   overflow:hidden;
-  background-color: #6050dc;
+  background-color: #5282EE;
   text-align: center;
 }
 
@@ -28,8 +28,8 @@ html{
 
 
 #submitbutton{
-  background-color: #531840;
-  border-color: #531840;
+  background-color: #39527D;
+  border-color: #39527D;
 }
 
 #header1{
@@ -38,8 +38,8 @@ html{
 }
 
 #fpwdbutton{
-  background-color: #531840;
-  border-color: #531840;
+  background-color: #39527D;
+  border-color: #39527D;
 }
 
 #willoimage{

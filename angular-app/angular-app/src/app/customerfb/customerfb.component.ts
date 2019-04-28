@@ -24,7 +24,8 @@ export class CustomerfbComponent implements OnInit {
       {headerName: 'Name', field: 'name', sortable: true, filter:true },
       {headerName: 'Email', field: 'email', sortable: true, filter:true },
       {headerName: 'Feedback', field: 'feedback', sortable: true, filter:true},
-      {headerName: 'Date', field: 'feedback_ts', sortable: true, filter:true}      
+      {headerName: 'Date', field: 'feedback_ts', sortable: true, filter:true},
+      {headerName: 'Response', field: 'admin_feedback', sortable: true, filter:true}      
   ];
 
   // rowData = [
@@ -56,6 +57,16 @@ export class CustomerfbComponent implements OnInit {
     if(data['result']){
       this.displayFlag = false;
       this.displayText = true;
+
+          this.Auth.getCustomerFeedbackDetails().subscribe(data=>{
+          var self = this;
+          console.log(data);
+          data.forEach(function(value){
+            self.feedbackArr.push(value);
+          });
+            self.rowData = data;
+          });
+
     }
     else{
       window.alert("Oops! something went wrong! Please try again")

@@ -9,20 +9,19 @@ nav a.hover {
   bottom:0;
   width:100%;
   height:60px;   /* Height of the footer */
-  background:#6050dc;
+  background:#5282EE;
 }
 #addAdminBtn{
-  background-color: #6050dc;
-  border-color: #6050dc;
+  background-color: #39527D;
+  border-color: #39527D;
   color:#FFFFFF;
-  padding: 15px 32px;
 }
 #textId,#textpwdId{
   width: 50%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
-  border-color: #6050dc;
+  border-color: #5282EE;
 }
 
 #inputAdminDiv{

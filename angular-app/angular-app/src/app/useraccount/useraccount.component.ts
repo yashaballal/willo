@@ -19,18 +19,25 @@ export class UseraccountComponent implements OnInit {
   public colDisplay = ["Email ID", "Name"]
   public columns = ["email","name"];
   public characters = [];
-  public conditionFlag:boolean = false;
+  public beneficiaryData = [];
+  public witnessData = [];
+  public executorData = [];
+  public assetData = [];
   public displayData;
+  public ownerData;
+  public conditionFlag:boolean = false;
+  public conditionFlagAsset:boolean = false;
   public displayEditor:boolean = false;
   public index;
   editorForm : FormGroup; 
   formText : String;
   public rowData;
   public emailID;
+  public user_id
 
     columnDefs = [
       {headerName: 'Name', field: 'name', sortable: true, filter:true },
-      {headerName: 'Email', field: 'email', sortable: true, filter:true },
+      {headerName: 'Email', field: 'email', sortable: true, filter:true}
   ];
 
 
@@ -38,7 +45,7 @@ export class UseraccountComponent implements OnInit {
   {
     if(!this.Auth.getLoggedInStatus())
     {
-      console.log("Reached this part in !getLoggedInStatus")
+      console.log("Reached this part in getLoggedInStatus")
       this.router.navigate(['/login'])
     }
     this.editorForm = new FormGroup({
@@ -48,9 +55,10 @@ export class UseraccountComponent implements OnInit {
   }
 
   public search(emailId, characters){
-    for (var i=0; i < characters.length; i++) {
+    for (var i=0; i < Object.keys(characters).length; i++) {
         if (characters[i].email === emailId) {
-            return characters[i];
+            console.log(characters[i])
+            return characters[i].user_id;
         }
       }
   }
@@ -64,9 +72,7 @@ export class UseraccountComponent implements OnInit {
       self.characters.push(value);
     });
     self.rowData = data;
-
     });
-
   }
 
    public onSubmit()
@@ -107,12 +113,42 @@ export class UseraccountComponent implements OnInit {
 
   public loadCourseReview(event)
   {
-    this.conditionFlag=true;
+    this.beneficiaryData = [];
+    this.witnessData = [];
+    this.executorData = []; 
     this.emailID = (event.target as Element).innerHTML; 
     console.log("Email is: "+this.emailID);
-    this.displayData = this.search(this.emailID, this.characters);
+    this.user_id = this.search(this.emailID, this.characters);
+    console.log(this.user_id)
+    this.Auth.getUserAccountDetails1(this.user_id).subscribe(data =>{
+    this.displayData = data;
+    this.conditionFlag=true;
+    for (var i=0; i < Object.keys(this.displayData).length; i++) {
+        if (this.displayData[i].party_type === "owner") {
+          this.ownerData = this.displayData[i];    
+        }
+        else if(this.displayData[i].party_type === "beneficiary")
+        {
+          this.beneficiaryData.push(this.displayData[i]);
+        }
+        else if(this.displayData[i].party_type.includes("witness"))
+        {
+          this.witnessData.push(this.displayData[i]);
+        }
+        else if(this.displayData[i].party_type.includes("executor"))
+        {
+          this.executorData.push(this.displayData[i]);
+        }
+      }
 
-    console.log("This is stored in displayData:"+this.displayData.email);
+      this.Auth.getAssetData(this.displayData[0].will_id).subscribe(data1=>{
+          this.conditionFlagAsset = true;
+          this.assetData = data1;
+      });
+
+
+      });
+
   }
 
 }

@@ -1,5 +1,5 @@
 <div id="maindiv">
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #6050dc">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #5282EE">
         <div class="container">
             <div class="navbar-header">
                 <a href="#/dashboard" class="navbar-brand"><img src="assets/images/willo1.png" width="30" height="30" class="d-inline-block align-top" alt="">&nbsp;&nbsp;Willo
@@ -28,7 +28,7 @@
     <div class="container-fluid">
         <div class="row">
             <div id="first" class="col-lg-6">
-                <h4 style="color: #6050dc">Current Subscription Model:</h4>
+                <h4 style="color: #5282EE">Current Subscription Model:</h4>
                 <br>
                 <font size=3 style="font-weight:bold;">Subsrciption fee: </font>
                 ${{subscriptionPrice}}  <input type="text" [(ngModel)]="priceVal" id="subID" placeholder="New subscription fee" #subInput>
@@ -36,36 +36,41 @@
                 <font size=3 style="font-weight:bold;">Discount offered: </font>
                 {{subscriptionDiscount}}%  <input type="text" [(ngModel)]="discVal" id="discID" placeholder="New discount %" #discInput>
                 <br><br>
-                <button id="ConfirmUpdate" (click)="onClickingUpdate()">Update
+                <button id="ConfirmUpdate" (click)="onClickingUpdate()" class="btn btn-primary">Update
+                </button> &nbsp;&nbsp;
+                <button id="ResetButton" (click)="onClickingReset()" class="btn btn-primary">Reset
                 </button>
-                <button id="ResetButton" (click)="onClickingReset()">Reset
-                </button>
-                <h6 *ngIf="displayPass" style="color:#6050dc">Updated!</h6>
-                <h6 *ngIf="displayFail" style="color:#6050dc">Please enter something to update!</h6>
+                <h6 *ngIf="displayPass" style="color:#5282EE">Updated!</h6>
+                <h6 *ngIf="displayFail" style="color:#5282EE">Please enter something to update!</h6>
             </div>
             <div class="col-lg-6" id="third">
-                <h4 style="color: #6050dc">Defaulters List:  Click on any Email-ID to reply</h4>
+                <h4 style="color: #5282EE">Defaulters List:  Click on any Email-ID to reply</h4>
                     <ag-grid-angular 
                     style="width: 100%; height:400px; color:#531840; font-size: 15px;"
                     class="ag-theme-balham"
                     [rowData]="rowData"
                     [columnDefs]="columnDefs"
+                    [paginationAutoPageSize]="true"
+                    [pagination]="true"
                     (gridReady)="onGridReady($event)"
                     (click)="loadMailBox($event)"
                     >
                     </ag-grid-angular>
+                        <div *ngIf=displayFlag layout="row" flex>
+                            &nbsp;&nbsp;&nbsp;
+                             <input type="textarea" id="textId" placeholder="Send email to selected user" 
+                             value="Hello! Seems like you are running a little late on your subscription fee! Please make a payment as soon as possible to continue enjoying our services! - Team Willo" 
+                             #textInput>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction(textInput.value)">Send</button>
+                            <br>
+                            <br>
+                            <br>
+                        </div>
+        <b *ngIf=displayText style="color:#5282EE">Email sent to the user!</b>
+
             </div>
         </div>
-        <div *ngIf=displayFlag layout="row" flex>
-          &nbsp;&nbsp;&nbsp;
-          <input type="textarea" id="textId" placeholder="Send email to selected user" #textInput>
-          &nbsp;&nbsp;&nbsp;
-          <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction(textInput.value)">Send</button>
-          <br>
-          <br>
-          <br>
-        </div>
-        <b *ngIf=displayText style="color:#6050dc">Email sent to the user!</b>
     </div>
     <!-- Footer -->
     <footer class="page-footer font-small teal pt-4">
