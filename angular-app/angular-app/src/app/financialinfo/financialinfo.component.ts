@@ -15,6 +15,8 @@ export class FinancialinfoComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
+  private gridApiDisc;
+  private gridColumnApiDisc;
   public emailID;
   displayFlag:boolean = false;
   displayText:boolean = false;
@@ -36,11 +38,11 @@ export class FinancialinfoComponent implements OnInit {
   public clickConditionFlag:boolean = false;
   public selectedPromo:string;
   public typed;
-  public activitySelected:string="Valid";
+  public activitySelected:string="Active";
   public selectedEntity;
-  // public gridApi: any;
-  // public columnApi: any;
-
+  private rowSelection;
+  public updateFlagPass:boolean = false;
+  public updateFlagFail:boolean = false;
   
 
   columnDefs = [
@@ -55,11 +57,12 @@ export class FinancialinfoComponent implements OnInit {
       {headerName: 'Promo Code', field: 'promo_code', sortable: true, filter:true},
       {headerName: 'Discount Value', field: 'discount_value', sortable: true, filter:true,type: "numericColumn"},
       {headerName: 'Discount Type', field: 'discount_type', sortable: true, filter:true},
-      {headerName: 'Activity', field: 'valid_flag', sortable: true, filter:true}
+      {headerName: 'Activity', field: 'activity_flag', sortable: true, filter:true}
 
   ];
 
   ngOnInit() {
+    this.rowSelection = "single";
   	if(!this.Auth.getLoggedInStatus())
     {
       this.router.navigate(['/login'])
@@ -96,16 +99,17 @@ export class FinancialinfoComponent implements OnInit {
     this.typed="Update"
     this.Auth.updateDiscountDetails(this.selectedPromo,this.activitySelected,this.typed).subscribe(data=>{
       if(data['result']){
-          window.alert("Discount promo updated");
+          this.updateFlagPass=true;
+          this.updateFlagFail=false;
           this.Auth.getDiscountDetails().subscribe(data=>{
           var self = this;
-          //console.log(data);
           this.rowDataDisc = data;
 
     });
         }
         else{
-          window.alert("Update unsuccessful");
+          this.updateFlagPass=false;
+          this.updateFlagFail=true;
           }
 
     });
@@ -116,6 +120,33 @@ export class FinancialinfoComponent implements OnInit {
 
     this.clickConditionFlag=false;
 
+  }
+
+  onSelectionChanged(){
+    this.clickConditionFlag=true;
+    console.log("Reached onSelectionChanged");
+    var selectedRows = this.gridApiDisc.getSelectedRows();
+    var selectedRowsString = "";
+    selectedRows.forEach(function(selectedRow, index) {
+      console.log("Reached the forEach function");
+      if (index !== 0) {
+        console.log("Reached the if condition inside forEach"); 
+        selectedRowsString += ", ";
+      }
+      selectedRowsString += selectedRow.promo_code;
+    });
+
+    console.log("The value: "+selectedRowsString);
+    this.clickConditionFlag=true;
+    this.conditionFlag=false;
+    this.displayFailPrimDisc=false;
+    this.displayFailDisc=false;
+    this.displayPassDisc=false;
+    this.displayPass=false;
+    this.displayFail=false;
+    this.updateFlagPass=false;
+    this.updateFlagFail=false;
+    this.selectedPromo = selectedRowsString;
   }
 
   onClickingSubmit(){
@@ -190,20 +221,14 @@ export class FinancialinfoComponent implements OnInit {
     this.displayPassDisc=false;
     this.displayFailDisc=false;
     this.displayFailPrimDisc=false;
+    this.updateFlagPass=false;
+    this.updateFlagFail=false;
   }
 
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-
-    params.api.sizeColumnsToFit();
-
-    params.api.sizeColumnsToFit();
-    window.addEventListener("resize", function() {
-      setTimeout(function() {
-        params.api.sizeColumnsToFit();
-      });
-    });
+    
   }
   public search(emailId, characters){
     for (var i=0; i < characters.length; i++) {
@@ -215,8 +240,8 @@ export class FinancialinfoComponent implements OnInit {
 
 
 onGridReadyDisc(params) {
-    this.gridApi = params.api;
-    this.gridColumnApi = params.columnApi;
+    this.gridApiDisc = params.api;
+    this.gridColumnApiDisc = params.columnApi;
 
     params.api.sizeColumnsToFit();
 
@@ -265,7 +290,7 @@ onGridReadyDisc(params) {
     this.displayPassDisc=false;
     this.displayPass=false;
     this.displayFail=false;
-    this.selectedPromo = (event.target as Element).innerHTML;
+    //this.selectedPromo = (event.target as Element).innerHTML;
   }
 
 }

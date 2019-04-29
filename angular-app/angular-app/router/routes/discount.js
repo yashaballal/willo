@@ -31,7 +31,7 @@ router.post('/', function (req, res) {
   		throw error;
     }
     else{
-    	var sql = "INSERT INTO discount (promo_code,discount_value,discount_type,valid_flag) VALUES(\'"+promoCode+"\',\'"+discountVal+"\',\'"+discountType+"\',\'"+activityType+"\')"
+    	var sql = "INSERT INTO discount (promo_code,discount_value,discount_type,activity_flag) VALUES(\'"+promoCode+"\',\'"+discountVal+"\',\'"+discountType+"\',\'"+activityType+"\')"
     	db.query(sql, function (error, results, fields){
     		if (error) 
   	{
@@ -53,7 +53,7 @@ router.post('/', function (req, res) {
   else if(typed==="Update"){
     var selectedPromo = req.body.selectedPromo;
     var activitySelected = req.body.activitySelected;
-    var sql = "UPDATE discount SET valid_flag =(\'"+activitySelected+"\') WHERE promo_code=(\'"+selectedPromo+"\')"
+    var sql = "UPDATE discount SET activity_flag =(\'"+activitySelected+"\') WHERE promo_code=(\'"+selectedPromo+"\')"
     db.query(sql, function (error, results, fields){
       if (error) 
   {
