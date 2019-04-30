@@ -123,7 +123,7 @@ export class FinancialinfoComponent implements OnInit {
 
   }
 
-  onSelectionChanged(){
+  onSelectionChangedDisc(){
     this.clickConditionFlag=true;
     console.log("Reached onSelectionChanged");
     var selectedRows = this.gridApiDisc.getSelectedRows();
@@ -149,6 +149,8 @@ export class FinancialinfoComponent implements OnInit {
     this.updateFlagFail=false;
     this.selectedPromo = selectedRowsString;
   }
+
+
 
   onClickingSubmit(){
     this.typed="Insert"
