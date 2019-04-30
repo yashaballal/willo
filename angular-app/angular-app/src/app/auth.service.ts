@@ -22,6 +22,19 @@ export class AuthService {
     this.loggedInStatus = value
     localStorage.setItem('loggedIn', JSON.stringify(this.loggedInStatus))
   }
+  getAdminDetails(){
+    var adminDetailsURL = apiURL+"addadmin";
+    return this.http.get<any[]>(adminDetailsURL);    
+  }
+ 
+  setAdminDetails(adminName:string,adminPassword:string,typed:string){
+    var adminDetailsURL = apiURL+"addadmin";
+    return this.http.post(adminDetailsURL,{adminName,adminPassword,typed});
+  }
+  updateAdminDetails(selectedAdmin:string,activitySelected:string,typed:string){
+    var adminDetailsURL = apiURL+"addadmin";
+    return this.http.post(adminDetailsURL,{selectedAdmin,activitySelected,typed});
+  }
   
   getLoggedInStatus(){
     console.log(this.loggedInStatus)
@@ -126,6 +139,7 @@ export class AuthService {
     var discountlDetailsURL = apiURL+"discount";
     return this.http.post(discountlDetailsURL,{selectedPromo,activitySelected,typed});
   }
+  
 
   getAssetData(will_id:string)
   {
