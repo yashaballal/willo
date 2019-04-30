@@ -84,7 +84,7 @@ export class CustomerfbComponent implements OnInit {
 
   sendEmailFunction()
   {
-    var textAreaValue = "yashaash@buffalo.edu" //document.getElementById("textAreaId").value;
+    var textAreaValue = (<HTMLInputElement>document.getElementById("textAreaId")).value;
     console.log(textAreaValue+ " to emailID "+ this.emailID);
     this.Auth.sendReply(this.emailID, textAreaValue).subscribe(data=>{
     if(data['result']){

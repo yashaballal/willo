@@ -3,7 +3,7 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormGroup, FormControl } from '@angular/forms';
-import { Quill } from 'quill'
+import * as Q from 'quill';
 import * as jsPDF from 'jspdf';
 
 
@@ -26,6 +26,7 @@ export class EditorComponent implements OnInit {
   public displayData;
   public quill;
   conditionFlagAsset:boolean;
+  Quill: any = Q
 
 
   constructor(private Auth:AuthService, private router:Router){ }
@@ -86,7 +87,7 @@ export class EditorComponent implements OnInit {
 
       });
 
-    this.quill = new Quill('#editor-container', {
+    this.quill = new this.Quill('#editor-container', {
     modules: {
     toolbar: []
     },

@@ -21,34 +21,40 @@
                 <a class="nav-link" href="#/customerfb" class="navbar-brand">Customer Feedback</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/login" class="navbar-brand">Sign Out</a>
+                   <a class="nav-link" href="#/login" class="navbar-brand">Sign Out</a>
             </li>
         </div>
     </nav>
-    <h4 style="color: #5282EE">Click on any Email-ID to reply!</h4>
-  <ag-grid-angular 
-    style="width: 70%; height:400px; color:#531840; font-size: 15px;"
-    class="ag-theme-balham"
-    [rowData]="rowData"
-    [columnDefs]="columnDefs"
-    [paginationAutoPageSize]="true"
-    [pagination]="true"
-    [getRowHeight]="getRowHeight"
-    [rowSelection]="rowSelection"
-    (gridReady)="onGridReady($event)"
-    (selectionChanged)="onSelectionChanged($event)"
-    >
-  </ag-grid-angular>
+    <br>
+    <div id="headerDiv" class="d-flex justify-content-center">
+      <h4 style="color: #5282EE">Click on any row to reply!</h4>
+    </div>
+    <br>
+    <div id="agGridDiv" class="d-flex justify-content-center">
+      <ag-grid-angular 
+        style="width: 70%; height:400px; color:#531840; font-size: 15px; "
+        class="ag-theme-balham"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [paginationAutoPageSize]="true"
+        [pagination]="true"
+        [getRowHeight]="getRowHeight"
+        [rowSelection]="rowSelection"
+        (gridReady)="onGridReady($event)"
+        (selectionChanged)="onSelectionChanged($event)"
+        >
+      </ag-grid-angular>
+    </div>
+  <div *ngIf=displayFlag class="d-flex justify-content-center">
+    &nbsp;&nbsp;&nbsp;
+    <textarea id="textAreaId" rows="4" cols="80" placeholder="Send email to selected user"></textarea>
+    &nbsp;&nbsp;&nbsp;
+  </div>
   <br>
-<div *ngIf=displayFlag layout="row" flex>
-  &nbsp;&nbsp;&nbsp;
-  <textarea id="textAreaId" rows="4" cols="80" placeholder="Send email to selected user"></textarea>
-  &nbsp;&nbsp;&nbsp;
-  <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction()">Send</button>
-  <br>
-  <br>
-  <br>
-</div>
+  <div *ngIf=displayFlag class="d-flex justify-content-center">
+    <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction()">Send</button>
+  </div>
+
   
 <b *ngIf=displayText style="color:#6050dc">Email sent to the user!</b>
 

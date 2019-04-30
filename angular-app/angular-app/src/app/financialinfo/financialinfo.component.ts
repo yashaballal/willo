@@ -70,7 +70,6 @@ export class FinancialinfoComponent implements OnInit {
 
     this.Auth.getFinanceDetails().subscribe(data=>{
             var self = this;
-            //console.log(data);
             this.rowData = data;
     });
 
@@ -82,7 +81,6 @@ export class FinancialinfoComponent implements OnInit {
 
     this.Auth.getDiscountDetails().subscribe(data=>{
             var self = this;
-            //console.log(data);
             this.rowDataDisc = data;
 
     });
@@ -195,7 +193,6 @@ export class FinancialinfoComponent implements OnInit {
 
     this.Auth.setSubModelDetails(this.priceVal).subscribe(data=>{
         if(data['result']){
-          //console.log("Got a positive result"); 
           this.displayPass = true;
           this.displayFail = false;
           this.Auth.getSubModelDetails().subscribe(data=>{
@@ -260,7 +257,7 @@ onGridReadyDisc(params) {
 
   public sendEmailFunction()
   {
-    var textAreaValue = "yashaash@buffalo.edu"//document.getElementById("textAreaId").value;
+    var textAreaValue = (<HTMLInputElement>document.getElementById("textAreaId")).value;
     //console.log(response+ " to emailID "+ this.emailID);
     console.log("The text Area Value:"+textAreaValue);
     this.Auth.sendReply(this.emailID, textAreaValue).subscribe(data=>{

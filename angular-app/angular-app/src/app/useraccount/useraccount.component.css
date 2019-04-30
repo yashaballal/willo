@@ -41,6 +41,8 @@ border:2px solid #5282EE;
 #pdfgenbutton, #textSubmit, #customGen{
   background-color: #39527D;
   border-color: #39527D;
+  color:#FFFFFF;
+  padding: 6px 20px;
 }
 
 tr:hover{
