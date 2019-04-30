@@ -14,7 +14,6 @@ import { FpwdComponent } from './fpwd/fpwd.component';
 import { QuillModule } from 'ngx-quill';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {AgGridModule} from "ag-grid-angular";
-
 import { HeaderComponent } from "./Common/Header/Header.component";
 import { FooterComponent } from "./Common/Footer/Footer.component";
 import { EditorComponent } from './editor/editor.component';

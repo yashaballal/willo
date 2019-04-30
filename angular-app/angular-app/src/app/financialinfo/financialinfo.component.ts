@@ -15,6 +15,8 @@ export class FinancialinfoComponent implements OnInit {
 
   private gridApi;
   private gridColumnApi;
+  private rowSelection;
+
   public emailID;
   displayFlag:boolean = false;
   displayText:boolean = false;
@@ -38,8 +40,6 @@ export class FinancialinfoComponent implements OnInit {
   public typed;
   public activitySelected:string="Valid";
   public selectedEntity;
-  // public gridApi: any;
-  // public columnApi: any;
 
   
 
@@ -84,6 +84,7 @@ export class FinancialinfoComponent implements OnInit {
 
     });
 
+    this.rowSelection = "single";
   }
 
   onClickingReset(){
@@ -193,9 +194,9 @@ export class FinancialinfoComponent implements OnInit {
   }
 
   onGridReady(params) {
+    this.displayText = false;
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
-
     params.api.sizeColumnsToFit();
 
     params.api.sizeColumnsToFit();
@@ -204,7 +205,10 @@ export class FinancialinfoComponent implements OnInit {
         params.api.sizeColumnsToFit();
       });
     });
+
   }
+
+
   public search(emailId, characters){
     for (var i=0; i < characters.length; i++) {
         if (characters[i].email === emailId) {
@@ -228,25 +232,12 @@ onGridReadyDisc(params) {
     });
   }
 
-  public loadMailBox(event)
+  public sendEmailFunction()
   {
-    this.displayText = false;
-    //console.log("The emailID to which mail would be sent: "+(event.target as Element).innerHTML);
-    this.emailID = (event.target as Element).innerHTML;  
-    if(this.emailID.includes("@") && this.emailID.includes("."))
-    {
-          this.displayFlag = true;
-    }
-    else
-    {
-      this.displayFlag = false;
-    }
-  }
-
-  public sendEmailFunction(response:string)
-  {
+    var textAreaValue = "yashaash@buffalo.edu"//document.getElementById("textAreaId").value;
     //console.log(response+ " to emailID "+ this.emailID);
-    this.Auth.sendReply(this.emailID, response).subscribe(data=>{
+    console.log("The text Area Value:"+textAreaValue);
+    this.Auth.sendReply(this.emailID, textAreaValue).subscribe(data=>{
     if(data['result']){
       this.displayFlag = false;
       this.displayText = true;
@@ -257,15 +248,42 @@ onGridReadyDisc(params) {
     });
   }
 
+  onSelectionChanged() {
+    console.log("Reached onSelectionChanged");
+    this.displayFlag = true;
+    this.displayText = false;
+    var selectedRows = this.gridApi.getSelectedRows();
+    var selectedRowsString = "";
+    selectedRows.forEach(function(selectedRow, index) {
+      console.log("Reached the forEach function");
+      if (index !== 0) {
+        console.log("Reached the if condition inside forEach"); 
+        selectedRowsString += ", ";
+      }
+      selectedRowsString += selectedRow.email;
+    });
+    this.emailID = selectedRowsString;
+    console.log("The email ID is:" +this.emailID);
+  }
+
+
   public loadCourseReview(event){
-    this.clickConditionFlag=true;
-    this.conditionFlag=false;
-    this.displayFailPrimDisc=false;
-    this.displayFailDisc=false;
-    this.displayPassDisc=false;
-    this.displayPass=false;
-    this.displayFail=false;
-    this.selectedPromo = (event.target as Element).innerHTML;
+
+    if((event.target as Element).innerHTML != "Promo Code" && (event.target as Element).innerHTML != "Discount Value"
+      && (event.target as Element).innerHTML != "Discount Type" && (event.target as Element).innerHTML != "Activity")
+    {
+      this.clickConditionFlag=true;
+      this.conditionFlag=false;
+      this.displayFailPrimDisc=false;
+      this.displayFailDisc=false;
+      this.displayPassDisc=false;
+      this.displayPass=false;
+      this.displayFail=false;
+      this.selectedPromo = (event.target as Element).innerHTML;
+
+      console.log(this.selectedPromo);
+
+    }
   }
 
 }

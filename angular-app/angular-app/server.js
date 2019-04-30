@@ -20,6 +20,7 @@ const piedetails = require('./router/routes/piedetails');
 const asset = require('./router/routes/asset');
 const submodel = require('./router/routes/submodel')
 const discount = require('./router/routes/discount')
+const benassetlist = require('./router/routes/benassetlist')
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -42,6 +43,8 @@ app.use('/api/piedetails', piedetails);
 app.use('/api/submodel', submodel);
 app.use('/api/asset?:will_id', asset);
 app.use('/api/discount', discount);
+app.use('/api/benassetlist?:will_id', benassetlist);
+
 
 //Catch all other route requests and return it to the index
 app.get('*',(req,res)=>{

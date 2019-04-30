@@ -38,6 +38,9 @@ export class UseraccountComponent implements OnInit {
   private gridColumnApi;
   private rowSelection;
 
+  private message:string;
+
+  parentMessage = "message from parent"
 
     columnDefs = [
       {headerName: 'Name', field: 'name', sortable: true, filter:true },
@@ -99,6 +102,10 @@ export class UseraccountComponent implements OnInit {
     this.executorData = []; 
     this.user_id = this.search(selectedRowsString, this.characters);
     console.log(this.user_id)
+    
+    localStorage.setItem('userid', this.user_id);
+
+
     this.Auth.getUserAccountDetails1(this.user_id).subscribe(data =>{
     this.displayData = data;
     this.conditionFlag=true;
@@ -134,21 +141,6 @@ export class UseraccountComponent implements OnInit {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
   }
-   public onSubmit()
-   {
-      this.formText = this.editorForm.get('editor').value;
-      console.log("Reached here again");
-      const doc = new jsPDF();
-      doc.setFontSize(12);
-      this.formText = this.formText.replace(/{{name}}/g, this.displayData["name"]);
-      this.formText = this.formText.replace(/{{city}}/g, this.displayData["city"]);
-      this.formText = this.formText.replace(/<p>/g,'');
-      this.formText = this.formText.replace(/<\/p>/g,'\n');
-      this.formText = this.formText.replace(/<br>/g, '\n');
-
-      doc.text(this.formText, 10, 10);
-      doc.save("CustomWill.pdf");
-   }
 
    public onClickPDF()
    {
@@ -169,45 +161,4 @@ export class UseraccountComponent implements OnInit {
    {
       window.open('#/editor');
    }
-
-  public loadCourseReview(event)
-  {
-    this.beneficiaryData = [];
-    this.witnessData = [];
-    this.executorData = []; 
-    this.emailID = (event.target as Element).innerHTML; 
-    console.log("Email is: "+this.emailID);
-    this.user_id = this.search(this.emailID, this.characters);
-    console.log(this.user_id)
-    this.Auth.getUserAccountDetails1(this.user_id).subscribe(data =>{
-    this.displayData = data;
-    this.conditionFlag=true;
-    for (var i=0; i < Object.keys(this.displayData).length; i++) {
-        if (this.displayData[i].party_type === "owner") {
-          this.ownerData = this.displayData[i];    
-        }
-        else if(this.displayData[i].party_type === "beneficiary")
-        {
-          this.beneficiaryData.push(this.displayData[i]);
-        }
-        else if(this.displayData[i].party_type.includes("witness"))
-        {
-          this.witnessData.push(this.displayData[i]);
-        }
-        else if(this.displayData[i].party_type.includes("executor"))
-        {
-          this.executorData.push(this.displayData[i]);
-        }
-      }
-
-      this.Auth.getAssetData(this.displayData[0].will_id).subscribe(data1=>{
-          this.conditionFlagAsset = true;
-          this.assetData = data1;
-      });
-
-
-      });
-
-  }
-
 }
