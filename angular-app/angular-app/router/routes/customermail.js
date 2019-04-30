@@ -18,6 +18,8 @@ router.use(bodyParser.urlencoded({     // to support URL-encoded bodies
 }));
 
 router.post('/', function (req, res) {
+
+  console.log("Reached the post in customer mail");
   var emailid= req.body.emailID;
   var response = req.body.response;
   db.query('SELECT user_id FROM user WHERE email = ?',[emailid], function (error, results, fields) {

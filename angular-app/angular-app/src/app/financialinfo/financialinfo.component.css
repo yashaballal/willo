@@ -17,9 +17,7 @@ nav a.hover {
   border-color: #39527D;
 }
 
-#textId{
-	height: 100px;
-	width: 600px;
+#textAreaId{
   padding: 10px;
   border-radius: 5px;
   line-height: 1.5;

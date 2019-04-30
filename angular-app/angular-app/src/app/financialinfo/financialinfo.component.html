@@ -50,7 +50,7 @@
                     [pagination]="true"
                     (gridReady)="onGridReadyDisc($event)"
                     [rowSelection]="rowSelection"
-                    (selectionChanged)="onSelectionChanged($event)"
+                    (selectionChanged)="onSelectionChangedDisc($event)"
                     >
                     </ag-grid-angular>
                 <br>
@@ -125,21 +125,22 @@
                     [columnDefs]="columnDefs"
                     [paginationAutoPageSize]="true"
                     [pagination]="true"
+                    [rowSelection]="rowSelection"
                     (gridReady)="onGridReady($event)"
-                    (click)="loadMailBox($event)"
+                    (selectionChanged)="onSelectionChanged($event)"
                     >
                     </ag-grid-angular>
-                        <div *ngIf=displayFlag layout="row" flex>
-                            &nbsp;&nbsp;&nbsp;
-                             <input type="textarea" id="textId" placeholder="Send email to selected user" 
-                             value="Hello! Seems like you are running a little late on your subscription fee! Please make a payment as soon as possible to continue enjoying our services! - Team Willo" 
-                             #textInput>
-                            &nbsp;&nbsp;&nbsp;
-                            <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction(textInput.value)">Send</button>
-                            <br>
-                            <br>
-                            <br>
-                        </div>
+                    <div *ngIf=displayFlag layout="row" flex>
+                        <br>
+                         <textarea rows="4" cols="80" id="textAreaId">"Hello! Seems like you are running a little late on your subscription fee! Please make a payment as soon as possible to continue enjoying our services! - Team Willo"
+                         </textarea>
+                        <br>
+                        <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction()">Send
+                        </button>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
                     <b *ngIf=displayText style="color:#5282EE">Email sent to the user!</b>
             </div>
         </div>
