@@ -17,7 +17,7 @@
                 <a class="nav-link" href="#/financialinfo" class="navbar-brand">Financial Info</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/addadmin" class="navbar-brand">Add Admin</a>
+                <a class="nav-link" href="#/addadmin" class="navbar-brand">Admin</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#/customerfb" class="navbar-brand">Customer Feedback</a>
@@ -34,13 +34,14 @@
                 <font size=3 style="font-weight:bold;">Subsrciption fee: </font>
                 ${{subscriptionPrice}}  <input type="text" [(ngModel)]="priceVal" id="subID" placeholder="New subscription fee" #subInput>
 
-                <button id="ConfirmUpdate" (click)="onClickingUpdate()">Update
+                <button id="ConfirmUpdate" (click)="onClickingUpdate()" class="btn btn-primary">Update
                 </button>
                 <h6 *ngIf="displayPass" style="color:#5282EE">Updated!</h6>
                 <h6 *ngIf="displayFail" style="color:#5282EE">Please enter something to update!</h6>
+                <br>
+                <br>
 
-                <h4 style="color: #6050dc">Discount Table</h4>
-                <script src="genderCellRenderer.js"></script>
+                <h4 style="color: #5282EE">Discount Table</h4>
                     <ag-grid-angular 
                     style="width: 100%; height:200px; color:#531840; font-size: 15px;"
                     class="ag-theme-balham"
@@ -48,24 +49,28 @@
                     [columnDefs]="columnDefsDisc"
                     [pagination]="true"
                     (gridReady)="onGridReadyDisc($event)"
-                    (click)="loadCourseReview($event)"
+                    [rowSelection]="rowSelection"
+                    (selectionChanged)="onSelectionChanged($event)"
                     >
                     </ag-grid-angular>
                 <br>
-                <button id="AddPromo" (click)="onClickingAddPromo()">Add Promo
+                <button id="AddPromo" (click)="onClickingAddPromo()" class="btn btn-primary">Add Promo
                 </button>
-                
+                    &nbsp;&nbsp;
                     <font *ngIf=clickConditionFlag style="margin-left: 20%" size=3 style="font-weight:bold;">{{selectedPromo}}: </font>
+                    &nbsp;
                     <label *ngIf=clickConditionFlag class="radio-inline">
-                        <input type="radio" name="optradio" value="Valid" [(ngModel)]="activitySelected">Valid
+                        <input type="radio" name="optradio" value="Active" [(ngModel)]="activitySelected">Active
+                    </label>
+                    &nbsp;
+                    <label *ngIf=clickConditionFlag class="radio-inline">
+                        <input type="radio" name="optradio" value="Inactive" [(ngModel)]="activitySelected">Inactive
                     </label>
 
-                    <label *ngIf=clickConditionFlag class="radio-inline">
-                        <input type="radio" name="optradio" value="Invalid" [(ngModel)]="activitySelected">Invalid
-                    </label>
-
-                    <button *ngIf=clickConditionFlag style="margin-left: 5%;"id="Confirm" (click)="onClickingConfirm()">Confirm</button>
-                    <button *ngIf=clickConditionFlag style="margin-left: 5%;"id="Cancel" (click)="onClickingCancel()">Cancel</button>
+                    <button *ngIf=clickConditionFlag style="margin-left: 5%;"id="Confirm" (click)="onClickingConfirm()" class="btn btn-primary">Confirm</button>
+                    <button *ngIf=clickConditionFlag style="margin-left: 5%;"id="Cancel" (click)="onClickingCancel()" class="btn btn-primary">Cancel</button>
+                    <font *ngIf=updateFlagPass style="color:#5282EE">Promo Code Updated </font>
+                    <font *ngIf=updateFlagFail style="color:#5282EE">Error! </font>
                 
                 <br>
 
@@ -99,16 +104,14 @@
                         </td>
                         <td>
                             <select id="activityType" [(ngModel)]="activityType">
-                                <option value="Valid">Valid</option>
-                                <option value="Invalid">Invalid</option>
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
                             </select>
                         </td>
                     </tr>
                 </table>
-                <button id="SubmitButton" (click)="onClickingSubmit()" *ngIf=conditionFlag>Submit
-                </button>
-                <button id="ResetButton" (click)="onClickingReset()" *ngIf=conditionFlag>Reset
-                </button>
+                <button id="SubmitButton" (click)="onClickingSubmit()" *ngIf=conditionFlag class="btn btn-primary">Submit</button>
+                <button id="ResetButton" (click)="onClickingReset()" *ngIf=conditionFlag class="btn btn-primary">Reset</button>
                 <h6  *ngIf="displayPassDisc" style="color:#6050dc">Added!</h6>
                 <h6  *ngIf="displayFailDisc" style="color:#6050dc">Please enter values in all fields!</h6>
                 <h6  *ngIf="displayFailPrimDisc" style="color:#6050dc">Promo code already exists!</h6>

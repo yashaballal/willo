@@ -33,8 +33,8 @@ nav a.hover {
 }
 
 #AddPromo{
-  background-color: #6050dc;
-  border-color: #6050dc;
+  background-color: #39527D;
+  border-color: #39527D;
   color:#FFFFFF;
   padding: 6px 20px;
 }
@@ -55,21 +55,22 @@ nav a.hover {
   margin: 8px 0 0 20px;
 }
 #SubmitButton{
-  background-color: #6050dc;
-  border-color: #6050dc;
+  background-color: #39527D;
+  border-color: #39527D;
   color:#FFFFFF;
   padding: 6px 20px;
+  margin-top: 8px;
 }
 #Confirm{
-  background-color: #6050dc;
-  border-color: #6050dc;
+  background-color: #39527D;
+  border-color: #39527D;
   color:#FFFFFF;
   padding: 6px 20px;
 }
 
 #Cancel{
-  background-color: #6050dc;
-  border-color: #6050dc;
+  background-color: #39527D;
+  border-color: #39527D;
   color:#FFFFFF;
   padding: 6px 20px;
 }
