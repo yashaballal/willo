@@ -32,18 +32,20 @@
             <div id="first" class="col-lg-6" style="text-align: center;">
               <h4 style="color: #5282EE; display: inline-block;">Select a User</h4>
               <br>
-              <ag-grid-angular 
-                style="width: 60%; height:400px; color:#531840; font-size: 15px; display: inline-block;"
-                class="ag-theme-balham"
-                [rowData]="rowData"
-                [columnDefs]="columnDefs"
-                [paginationAutoPageSize]="true"
-                [pagination]="true"
-                [rowSelection]="rowSelection"
-                (gridReady)="onGridReady($event)"
-                (selectionChanged)="onSelectionChanged($event)"
-                >
-              </ag-grid-angular>    
+              <div style="width:100%; height: 100%">
+                  <ag-grid-angular 
+                    style="width: 80%; height:400px; color:#531840; font-size: 15px; display: inline-block;"
+                    class="ag-theme-balham"
+                    [rowData]="rowData"
+                    [columnDefs]="columnDefs"
+                    [paginationAutoPageSize]="true"
+                    [pagination]="true"
+                    [rowSelection]="rowSelection"
+                    (gridReady)="onGridReady($event)"
+                    (selectionChanged)="onSelectionChanged($event)"
+                    >
+                  </ag-grid-angular>
+              </div>    
             </div>
             <div class="col-lg-6" id="second" *ngIf=conditionFlag >
                 <div class="row">
@@ -69,8 +71,10 @@
                         <font size=3 style="font-weight:bold;">Marital Status:</font>
                         {{ownerData.marital_status}}
                         <br>
+                        <br>
                         <button (click)="onClickPDF()" id=pdfgenbutton class="btn btn-primary" style="color: #FFFFFF">Download Default Will</button>&nbsp;&nbsp;
-                        <button (click)="createCustomWill()" id=customGen class="btn btn-primary" style="color: #FFFFFF">Create Custom Will</button>
+                        <button (click)="createCustomWill()" id=customGen class="btn btn-primary" style="color: #FFFFFF">Create Custom Will</button>&nbsp;&nbsp;
+                        <button (click)="viewFeedbackInfo()" id=feedbackInfo class="btn btn-primary" style="color: #FFFFFF">View Feedback Info</button>
                     </div>
                     <div class="col-lg-5" id="sub2second">
                         <font size=5 color="#5282EE">Beneficiaries List</font>
@@ -118,7 +122,7 @@
 
         <!-- Copyright -->
         <div id="footer" class="footer-copyright text-center py-3"><font color="#FFFFFF">© 2019 Copyright: </font>
-          <a href="#">Placeholder.com</a>
+          <a id="willosite" href="http://bit.ly/mywillo">John Barbieri</a>
         </div>
         <!-- Copyright -->
 

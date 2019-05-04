@@ -18,9 +18,12 @@ const addadmin = require('./router/routes/addadmin');
 const financial = require('./router/routes/financial');
 const piedetails = require('./router/routes/piedetails');
 const asset = require('./router/routes/asset');
-const submodel = require('./router/routes/submodel')
-const discount = require('./router/routes/discount')
-const benassetlist = require('./router/routes/benassetlist')
+const submodel = require('./router/routes/submodel');
+const discount = require('./router/routes/discount');
+const benassetlist = require('./router/routes/benassetlist');
+const respondedcust = require('./router/routes/respondedcust');
+const useridfeedback = require('./router/routes/useridfeedback');
+
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
@@ -44,7 +47,8 @@ app.use('/api/submodel', submodel);
 app.use('/api/asset?:will_id', asset);
 app.use('/api/discount', discount);
 app.use('/api/benassetlist?:will_id', benassetlist);
-
+app.use('/api/respondedcust?:email_id', respondedcust);
+app.use('/api/useridfeedback?:user_id', useridfeedback);
 
 //Catch all other route requests and return it to the index
 app.get('*',(req,res)=>{

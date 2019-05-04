@@ -43,8 +43,8 @@ export class UseraccountComponent implements OnInit {
   parentMessage = "message from parent"
 
     columnDefs = [
-      {headerName: 'Name', field: 'name', sortable: true, filter:true },
-      {headerName: 'Email', field: 'email', sortable: true, filter:true}
+      {headerName: 'Name', field: 'name', sortable: true, filter:true, resizable:true },
+      {headerName: 'Email', field: 'email', sortable: true, filter:true, resizable:true}
   ];
 
 
@@ -105,7 +105,6 @@ export class UseraccountComponent implements OnInit {
     
     localStorage.setItem('userid', this.user_id);
 
-
     this.Auth.getUserAccountDetails1(this.user_id).subscribe(data =>{
     this.displayData = data;
     this.conditionFlag=true;
@@ -140,6 +139,7 @@ export class UseraccountComponent implements OnInit {
   onGridReady(params) {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
+    this.gridApi.sizeColumnsToFit();
   }
 
    public onClickPDF()
@@ -160,5 +160,12 @@ export class UseraccountComponent implements OnInit {
    createCustomWill()
    {
       window.open('#/editor');
+   }
+
+   viewFeedbackInfo()
+   {
+      localStorage.setItem('useridfeedback', this.user_id);
+      console.log("Reached this part in getLoggedInStatus")
+      this.router.navigate(['/customerfb'])    
    }
 }

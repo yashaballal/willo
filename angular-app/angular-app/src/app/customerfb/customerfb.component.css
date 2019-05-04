@@ -12,14 +12,19 @@ nav a.hover {
   background:#5282EE;
 }
 
-#sendEmailBtn{
+#sendEmailBtn,#replyOption{
   background-color: #39527D;
   border-color: #39527D;
 }
 
-#textAreaId{
+#textAreaId,#textAreaId2{
   padding: 10px;
   border-radius: 5px;
   line-height: 1.5;
   border-color: #5282EE;
  }
+
+#willosite{
+  color: #FFFFFF;
+}
+

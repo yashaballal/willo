@@ -11,7 +11,7 @@ nav a.hover {
   height:60px;   /* Height of the footer */
   background:#5282EE;
 }
-#addAdminBtn{
+#AddAdmin,#AdminConfirm,#AdminCancel,#SubmitButton,#ResetButton{
   background-color: #39527D;
   border-color: #39527D;
   color:#FFFFFF;
@@ -27,3 +27,8 @@ nav a.hover {
 #inputAdminDiv{
   text-align: center;
 }
+
+#willosite{
+  color: #FFFFFF;
+}
+

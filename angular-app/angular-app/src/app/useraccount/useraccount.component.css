@@ -1,11 +1,14 @@
 #navigationid{
   width:100%;
 }
+#willosite{
+  color: #FFFFFF;
+}
 nav a {
-  color: #fff;
+  color: #FFFFFF;
   }
 nav a.hover {
-  color: #32673f;
+  color: #F0F0F0;
 }
 table{
 border-collapse:collapse;
@@ -38,11 +41,12 @@ border:2px solid #5282EE;
     float: left; /* add this */
 }
 
-#pdfgenbutton, #textSubmit, #customGen{
+#pdfgenbutton, #textSubmit, #customGen, #feedbackInfo{
   background-color: #39527D;
   border-color: #39527D;
   color:#FFFFFF;
-  padding: 6px 20px;
+  padding: 6px 10px;
+  font-size: 12px;
 }
 
 tr:hover{
