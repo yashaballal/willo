@@ -13,8 +13,6 @@ import { LoginComponent } from './login/login.component';
 import { FpwdComponent } from './fpwd/fpwd.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AgGridModule } from "ag-grid-angular";
-import { HeaderComponent } from "./Common/Header/Header.component";
-import { FooterComponent } from "./Common/Footer/Footer.component";
 import { EditorComponent } from './editor/editor.component';
 
 @NgModule({
@@ -27,8 +25,6 @@ import { EditorComponent } from './editor/editor.component';
     CustomerfbComponent,
     LoginComponent,
     FpwdComponent,
-    HeaderComponent,
-    FooterComponent,
     EditorComponent
   ],
   imports: [
