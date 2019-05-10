@@ -101,10 +101,15 @@
                 <br>
                 <br>
                 <div *ngIf=displayFlag>
-                    <div class="d-flex justify-content-left">
-                        <textarea id="textAreaId" rows="4" cols="80" placeholder="Type mail here"></textarea>
+                    <div>
+                        <font size=3 style="font-weight:bold;">Your current reply/Send new reply:</font>
                     </div>
-                    <br>    
+                    <br>
+                    <div class="d-flex justify-content-left">
+                        <textarea id="textAreaId" rows="4" cols="80" placeholder="Type mail here">{{admin_feedback}}</textarea>
+                    </div>
+                    <br>
+                    <br>   
                     <div *ngIf=displayFlag class="justify-content-left">
                         <button type="button" id="sendEmailBtn" class="btn btn-primary" (click)="sendEmailFunction()">Send</button>
                     </div>

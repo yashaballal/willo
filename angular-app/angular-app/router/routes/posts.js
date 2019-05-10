@@ -12,7 +12,7 @@ router.post('/', function (req, res) {
   console.log('Reached here for posts');
   var username= req.body.username;
   var password = req.body.password;
-  db.query('SELECT * FROM admin WHERE username = ?',[username], function (error, results, fields) {
+  db.query('SELECT * FROM admin WHERE username = ? and status="Active"',[username], function (error, results, fields) {
     console.log("Querying done");
   if (error) {
      console.log("error ocurred",error);

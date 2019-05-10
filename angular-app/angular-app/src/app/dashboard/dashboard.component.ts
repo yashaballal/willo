@@ -190,12 +190,20 @@ export class DashboardComponent implements OnInit {
                                                     gridLines: {
                                                         offsetGridLines: true
                                                     },
+                                                    scaleLabel: {
+                                                      display: true,
+                                                      labelString: 'Time'
+                                                    }
                                                 }],
                                                   yAxes:[
                                                   {
                                                     ticks:{
-                                                      beginAtZero: true
+                                                      beginAtZero: true,
+                                                      callback: function(value, index, values) {
+                                                        return '$' + value;
                                                     }
+                                                    },
+                                                    
                                                   }
                                                   ]
                                                 },
@@ -237,19 +245,30 @@ export class DashboardComponent implements OnInit {
                                         
                                         ticks:{
                                           beginAtZero: true
-                                        }
-                                      }],
-                                        yAxes:[
-                                        {
-                                          gridLines: {
-                                            color: "rgba(0, 0, 0, 0)",
-                                            offsetGridLines: false
                                         },
-                                          ticks:{
-                                            beginAtZero: true
-                                          }
+                                        scaleLabel: {
+                                          display: true,
+                                          labelString: 'Time'
                                         }
-                                        ]
+                                        }],
+                                          yAxes:[
+                                          {
+                                            gridLines: {
+                                              color: "rgba(0, 0, 0, 0)",
+                                              offsetGridLines: false
+                                          },
+                                            ticks:{
+                                              beginAtZero: true,
+                                              callback: function(value, index, values) {
+                                                return '$' + value;
+                                            }
+                                            },
+                                            scaleLabel: {
+                                              display: true,
+                                              labelString: 'Income'
+                                            }
+                                          }
+                                          ]
                                       },
                                      
                                       responsive:true,

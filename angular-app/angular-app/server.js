@@ -23,6 +23,10 @@ const discount = require('./router/routes/discount');
 const benassetlist = require('./router/routes/benassetlist');
 const respondedcust = require('./router/routes/respondedcust');
 const useridfeedback = require('./router/routes/useridfeedback');
+const postblob = require('./router/routes/postblob');
+const customerfbmail = require('./router/routes/customerfbmail');
+const setwillstatus = require('./router/routes/setwillstatus');
+const childreninfo = require('./router/routes/childreninfo');
 
 
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
@@ -49,6 +53,10 @@ app.use('/api/discount', discount);
 app.use('/api/benassetlist?:will_id', benassetlist);
 app.use('/api/respondedcust?:email_id', respondedcust);
 app.use('/api/useridfeedback?:user_id', useridfeedback);
+app.use('/api/postblob', postblob);
+app.use('/api/customerfbmail', customerfbmail);
+app.use('/api/setwillstatus', setwillstatus);
+app.use('/api/childreninfo', childreninfo);
 
 //Catch all other route requests and return it to the index
 app.get('*',(req,res)=>{

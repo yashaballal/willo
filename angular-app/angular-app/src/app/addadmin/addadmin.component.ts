@@ -27,6 +27,7 @@ export class AddadminComponent implements OnInit {
   public displayFailPrimDisc:boolean = false;
   public updateFlagPass:boolean = false;
   public updateFlagFail:boolean = false;
+  public updateSuper:boolean = false;
   public selectedPromo:string;
   public selectedAdmin:string;
   public activitySelected:string="Active";
@@ -130,6 +131,7 @@ onSelectionChanged(){
   this.displayFail=false;
   this.updateFlagPass=false;
   this.updateFlagFail=false;
+  this.updateSuper = false;
   this.selectedAdmin = selectedRowsString;
 
 }
@@ -162,8 +164,18 @@ onClickingConfirm(){
   });
       }
       else{
-        this.updateFlagPass=false;
-        this.updateFlagFail=true;
+        if(data['code'] === 300)
+        {
+          this.updateFlagPass = false;
+          this.updateFlagFail = false;
+          this.updateSuper = true;
+        }
+        else
+        {
+          this.updateFlagPass=false;
+          this.updateFlagFail=true;
+          this.updateSuper = false;          
+        }
         }
 
   });

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const apiURL= "http://localhost:4600/api/";
-//const apiURL= "http://68.183.112.87:3000/api/";
+//const apiURL= "http://localhost:4600/api/";
+const apiURL= "http://68.183.112.87:3000/api/";
 
 
 
@@ -32,10 +32,12 @@ export class AuthService {
     var respondedCustURL = apiURL+"respondedcust?email_id="+email_id;
     return this.http.get<any[]>(respondedCustURL);
   }
+
   setAdminDetails(adminName:string,adminPassword:string,typed:string){
     var adminDetailsURL = apiURL+"addadmin";
     return this.http.post(adminDetailsURL,{adminName,adminPassword,typed});
   }
+
   updateAdminDetails(selectedAdmin:string,activitySelected:string,typed:string){
     var adminDetailsURL = apiURL+"addadmin";
     return this.http.post(adminDetailsURL,{selectedAdmin,activitySelected,typed});
@@ -96,6 +98,13 @@ export class AuthService {
     return this.http.post(sendmailURL, {emailID, response});
   }
 
+  sendReplyFb(emailID:string, feedback:string, response:string)
+  {
+    var sendmailURL = apiURL+"customerfbmail";
+    return this.http.post(sendmailURL, {emailID, feedback, response});
+  }
+
+
   addAdminApi(emailID:string, password:string)
   {
     var addadminURL = apiURL+"addadmin";
@@ -120,17 +129,12 @@ export class AuthService {
     return this.http.get<any[]>(subModelDetailsURL);    
   }
 
-  // setSubModelDetails(subInput:string, discInput:string)
-  // {
-  //   var subModelDetailsURL = apiURL+"submodel";
-  //   console.log("Reached setSubModelDetails"+ subModelDetailsURL);
-  //   return this.http.post(subModelDetailsURL,{subInput,discInput});    
-  // }
   setSubModelDetails(subInput:string)
   {
     var subModelDetailsURL = apiURL+"submodel";
     return this.http.post(subModelDetailsURL,{subInput});    
   }
+
   getDiscountDetails()
   {
     var discountlDetailsURL = apiURL+"discount";
@@ -148,9 +152,16 @@ export class AuthService {
 
   getAssetData(will_id:string)
   {
-    var assetDataURL = apiURL+"assets?will_id="+will_id;
+    var assetDataURL = apiURL+"asset?will_id="+will_id;
     console.log("Reached getAssetData:"+ assetDataURL);
     return this.http.get<any[]>(assetDataURL);
+  }
+
+  getBenAssetData(will_id:string)
+  {
+    var benassetDataURL = apiURL+"benassetlist?will_id="+will_id;
+    console.log("Reached getBenAssetData:"+ benassetDataURL);
+    return this.http.get<any[]>(benassetDataURL);
   }
 
   getUserIDFeedback(user_id:string)
@@ -158,5 +169,33 @@ export class AuthService {
     var userIDFeedbackURL = apiURL+"useridfeedback?user_id="+user_id;
     console.log("Reached getUserIDFeedback" + userIDFeedbackURL);
     return this.http.get<any[]>(userIDFeedbackURL);
+  }
+
+  postBlobToDb(blobStore:Blob, user_id:string)
+  {
+    console.log("Reached postBlobToDb");
+    console.log(typeof blobStore);
+    var postblobURL = apiURL+"postblob";
+    return this.http.post(postblobURL,{blobStore,user_id});
+  }
+
+  setWillStatus(will_id:string)
+  {
+    var willStatusURL = apiURL+"setwillstatus?will_id="+will_id;
+    console.log("Reached setWillStatus"+willStatusURL);
+    return this.http.get<any>(willStatusURL);
+  }
+
+  getChildrenInformation(will_id:string)
+  {
+    var childreninfoURL = apiURL+"childreninfo?will_id="+will_id;
+    console.log("Reached getChildrenInformation"+childreninfoURL);
+    return this.http.get<any[]>(childreninfoURL);
+  }
+  getPaymentDetails(will_id:string)
+  {
+    var paymentdetailsURL = apiURL+"getlastpaymentdt?willid="+will_id;
+    console.log("Reached getPaymentDetails"+paymentdetailsURL);
+    return this.http.get<any[]>(paymentdetailsURL);
   }
 }

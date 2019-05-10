@@ -13,6 +13,10 @@ router.get('/', function (req, res) {
    db.query('SELECT a.* , b.will_id from belongings a inner join beneficiary_belongings b on a.belongings_id=b.belongings_id and b.will_id=?',
    	[req.query.will_id], function (error, results, fields) {
     if (error) throw error;
+    if(results === null)
+    {
+    	console.log("Got nothing in the query");
+    }
     console.log(JSON.stringify(results));
     res.send(JSON.stringify(results));
 	});

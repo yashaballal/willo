@@ -18,6 +18,7 @@ router.get('/', function (req, res) {
 
 router.post('/', function (req, res) {
   var typed = req.body.typed;
+  var flagStat = false;
 	if(typed==="Insert"){
     var adminName = req.body.adminName;
     var adminPassword = req.body.adminPassword;
@@ -52,11 +53,23 @@ router.post('/', function (req, res) {
   }
 
   else if(typed==="Update"){
+    console.log("Arrived at the update");
     var selectedAdmin = req.body.selectedAdmin;
     var activitySelected = req.body.activitySelected;
-    var sql = "UPDATE admin SET status =(\'"+activitySelected+"\') WHERE username=(\'"+selectedAdmin+"\')"
+    db.query('SELECT * FROM admin WHERE username=\"'+selectedAdmin+'\"',  function (error, results, fields){
+      if(results[0].super_admin === 'T')
+      {
+        console.log("Cannot make the super admin inactive");
+        res.send({
+          "code":300,
+          "result":false
+        });
+        flagStat = true;
+      }
+    });
+    var sql = "UPDATE admin SET status =(\'"+activitySelected+"\') WHERE username=(\'"+selectedAdmin+"\') and super_admin!='T'"
     db.query(sql, function (error, results, fields){
-      if (error) 
+  if (error) 
   {
     console.log(error);
     res.send({
@@ -65,11 +78,17 @@ router.post('/', function (req, res) {
     });
     //throw error;
   }
-  else
-      res.send({            
-        "code":200,
+  else{
+    if(flagStat === false)
+    {
+      console.log("Sending a positive response");
+        res.send({            
+          "code":200,
           "result":true
-    });
+      });
+    }
+
+  }
   });
 }
 

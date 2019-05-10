@@ -21,9 +21,9 @@ router.post('/', function (req, res) {
 
   console.log("Reached the post in customer mail");
   var emailid = req.body.emailID;
-  var feedbackVar= req.body.feedback;
+  var feedback= req.body.feedback;
   var response = req.body.response;
-  console.log("The variables are:"+emailid+" "+feedbackVar+" "+response);
+  console.log("The variables are:"+emailid+" "+feedback+" "+response);
   db.query('SELECT user_id FROM user WHERE email = ?',[emailid], function (error, results, fields) {
   if (error) {
      console.log("error ocurred",error);
@@ -32,7 +32,7 @@ router.post('/', function (req, res) {
     if(results[0]){
       console.log("Reached results[0] condition");
       var user_id =results[0].user_id;
-      db.query('UPDATE user_feedback SET admin_feedback =?, resolved ="Y" where user_id=?',[response, user_id],
+      db.query('UPDATE user_feedback SET admin_feedback =?, resolved ="Y" where user_id=? and feedback=?',[response, user_id, feedback],
        function (error, results, fields) {
       if (error) {
           console.log("error ocurred",error);
